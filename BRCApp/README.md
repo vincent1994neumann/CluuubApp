@@ -1,2 +1,0 @@
-# CluuubApp
-Abschlussprojekt iOS CluuubApp
