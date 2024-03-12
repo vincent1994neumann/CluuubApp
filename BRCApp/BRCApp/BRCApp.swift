@@ -8,7 +8,12 @@
 import SwiftUI
 
 @main
-struct BRCAppApp: App {
+struct BRCApp: App {
+    
+    @StateObject private var authViewModel =
+    AuthenticationView
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
