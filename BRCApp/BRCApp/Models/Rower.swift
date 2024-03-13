@@ -11,13 +11,13 @@ struct Rower: Codable{
     let id : String
     let name : String
     let lastName : String
-    let age : Int
+    let age : String
     let eMail : String
     let password : String
     let skull: Bool
     let riemen : Bool
     let bb : Bool
     let sb : Bool
-    var trailerDrivingLicence = false
-    var admin = false
+    var trailerDrivingLicence : Bool
+    var admin :Bool
 }

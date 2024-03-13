@@ -18,6 +18,7 @@ struct AuthenticationView: View {
     var body: some View {
         NavigationStack{
             VStack{
+                Text("Hello")
                 Text("\(appName)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -45,7 +46,7 @@ struct AuthenticationView: View {
                     print("Log 1")
                     if authViewModel.validateLoginFields(){
                         authViewModel.login()
-                        print("Hier sind wir 2")
+                        print("Login done")
                     }
                 }.buttonStyle(.borderedProminent)
                     .padding(.top, 20)

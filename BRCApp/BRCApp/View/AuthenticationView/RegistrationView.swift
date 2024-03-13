@@ -10,39 +10,55 @@ import SwiftUI
 struct RegistrationView: View {
     
     @EnvironmentObject var authViewModel : AuthenticationViewModel
-    
-    @State private var correctPassword : String = ""
+    @Environment(\.dismiss) private var dismiss
+
     
     var body: some View {
         NavigationStack{
-            
-            
-            
             Form{
-                Section{
-                    Text("Bitte gebe deine Daten für die Registrierung ein")
-                }
                 Section(header: Text("Persönliche Informationen")){
                     TextField("Vorname", text: $authViewModel.name)
                     TextField("Nachname", text: $authViewModel.lastName)
+                    TextField("Alter", text: $authViewModel.age)
+                            .keyboardType(.numberPad)
+                    
                     TextField("E-Mail Adresse", text: $authViewModel.emailAdress)
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     SecureField("Passwort", text: $authViewModel.password)
-                    SecureField("Passwort bestätigen", text: $correctPassword)
+                    SecureField("Passwort bestätigen", text: $authViewModel.correctPassword)
                 }
+                
                 Section(header: Text("Persönliche Rudereigenschaften")) {
                     Toggle("Skull", isOn: $authViewModel.skull)
-                }
-                Section{
                     Toggle("Riemen", isOn: $authViewModel.riemen)
                     Toggle("Backbord", isOn: $authViewModel.bb)
+                        .disabled(!authViewModel.riemen)
                     Toggle("Steuerbord", isOn: $authViewModel.sb)
+                        .disabled(!authViewModel.riemen)
                 }
-            }
-            
+                
+                Section(header: Text("Sonstige Eigentschaften")){
+                    Toggle("Hängerfahrer", isOn: $authViewModel.trailerDrivingLicence)
+                }
+                
+                Section{
+                    HStack{
+                        Spacer()
+                        Button("Registrieren"){
+                            authViewModel.register()
+                            dismiss()
+                        }
+                        Spacer()
+                    }
+                }
+            }.toolbar{
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button("Abbrechen"){
+                        dismiss()
+                    }
+                }
+            }.navigationTitle("Registrierung")
         }
-        
-        
     }
 }
 

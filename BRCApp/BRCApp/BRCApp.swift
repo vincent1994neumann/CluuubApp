@@ -29,7 +29,9 @@ struct BRCApp: App {
                 HomeView()
             } else{
                 AuthenticationView()
+                    .preferredColorScheme(.light)
                 }
         } .environmentObject(authViewModel)
+            
     }
 }

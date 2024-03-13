@@ -13,14 +13,15 @@ class AuthenticationViewModel : ObservableObject{
     @Published var user : Rower?
     @Published var emailAdress : String = ""
     @Published var password: String = ""
+    @Published var correctPassword : String = ""
     @Published var name: String = ""
     @Published var lastName : String = ""
-    @Published var age : Int = 0
+    @Published var age : String = ""
     @Published var skull : Bool = false
     @Published var riemen : Bool = false
     @Published var bb : Bool = false
     @Published var sb : Bool = false
-    
+    @Published var trailerDrivingLicence: Bool = false
     
     @Published var showAlert = false
     @Published var alertMessage = ""
@@ -48,24 +49,12 @@ class AuthenticationViewModel : ObservableObject{
         FirebaseManager.shared.auth.createUser(withEmail: self.emailAdress, password: self.password){
             authResult, error in
             if let user = self.handleAuthResult(authResult: authResult, error: error){
-                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, password: self.password, skull: false, riemen: false, bb: false, sb: false)
+                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, password: self.password, skull: false, riemen: false, bb: false, sb: false, trailerDrivingLicence: false, admin: false)
                 do{
                     try FirebaseManager.shared.fireStore.collection("user").document(user.uid).setData(from: fireUser)
                 }catch{
                     print("Registrierung fehlgeschlagen: \(error)")
                 }
-            }
-        }
-    }
-    
-
-    
-    
-    func login() {
-        FirebaseManager.shared.auth.signIn(withEmail: self.emailAdress, password: self.password){
-            authResult, error in
-            if let user = self.handleAuthResult(authResult: authResult, error: error){
-                self.fetchFireUser(withId: user.uid)
             }
         }
     }
@@ -82,8 +71,20 @@ class AuthenticationViewModel : ObservableObject{
         return nil
     }
     
+    
+    func login() {
+        FirebaseManager.shared.auth.signIn(withEmail: self.emailAdress, password: self.password){
+            authResult, error in
+            if let user = self.handleAuthResult(authResult: authResult, error: error){
+                self.fetchFireUser(withId: user.uid)
+            }
+        }
+    }
+    
+   
+    
     private func fetchFireUser(withId id : String){
-        FirebaseManager.shared.fireStore.collection("users").document(id).getDocument{document, error in
+        FirebaseManager.shared.fireStore.collection("user").document(id).getDocument{document, error in
             if let error {
                 print("Error beim Abrufen des Users \(id): \(error)")
                 return
@@ -107,16 +108,66 @@ class AuthenticationViewModel : ObservableObject{
     //Überprüfung, ob alle LogIn Felder befüllt wurden.
     func validateLoginFields() -> Bool {
         if emailAdress.isEmpty || password.isEmpty {
-            alertMessage = "Bitte vervollständigen Sie Ihre Login-Daten."
+            alertMessage = "Bitte geben Sie Ihre Login-Daten korrekt ein."
             showAlert = true
             return false
         }
         return true
     }
     
+//    func validateRegisterFields() -> Bool {
+//        // Prüfen, ob der Vorname leer ist
+//        if name.isEmpty {
+//            alertMessage = "Bitte geben Sie Ihren Vornamen ein."
+//            showAlert = true
+//            return false
+//        }
+//
+//        // Prüfen, ob der Nachname leer ist
+//        if lastName.isEmpty {
+//            alertMessage = "Bitte geben Sie Ihren Nachnamen ein."
+//            showAlert = true
+//            return false
+//        }
+//
+//        // Prüfen, ob die E-Mail-Adresse leer ist
+//        if emailAdress.isEmpty {
+//            alertMessage = "Bitte geben Sie Ihre E-Mail-Adresse ein."
+//            showAlert = true
+//            return false
+//        }
+//        
+//        // Prüfen, ob das Passwort leer ist
+//        if password.isEmpty {
+//            alertMessage = "Bitte geben Sie ein Passwort ein."
+//            showAlert = true
+//            return false
+//        }
+//        
+//        // Prüfen, ob das Passwort mit der Passwortbestätigung übereinstimmt
+//        if password != correctPassword {
+//            alertMessage = "Ihr Passwort stimmt nicht überein."
+//            showAlert = true
+//            return false
+//        }
+//        
+//        // Prüfen, ob das Alter eingetragen ist und eine gültige Zahl darstellt
+//        if age.isEmpty || Int(age) == nil {
+//            alertMessage = "Bitte geben Sie Ihr Alter als Zahl ein."
+//            showAlert = true
+//            return false
+//        }
+//        
+//        // Wenn alle Prüfungen erfolgreich waren
+//        return true
+//    }
+//    
     func logout() {
         do{
-            //TODO 
+            try FirebaseManager.shared.auth.signOut()
+            self.user = nil
+        }catch{
+            print("Error beim Ausloggen \(error)")
         }
     }
     
