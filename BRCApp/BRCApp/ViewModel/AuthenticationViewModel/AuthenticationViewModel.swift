@@ -115,53 +115,14 @@ class AuthenticationViewModel : ObservableObject{
         return true
     }
     
-//    func validateRegisterFields() -> Bool {
-//        // Prüfen, ob der Vorname leer ist
-//        if name.isEmpty {
-//            alertMessage = "Bitte geben Sie Ihren Vornamen ein."
-//            showAlert = true
-//            return false
-//        }
-//
-//        // Prüfen, ob der Nachname leer ist
-//        if lastName.isEmpty {
-//            alertMessage = "Bitte geben Sie Ihren Nachnamen ein."
-//            showAlert = true
-//            return false
-//        }
-//
-//        // Prüfen, ob die E-Mail-Adresse leer ist
-//        if emailAdress.isEmpty {
-//            alertMessage = "Bitte geben Sie Ihre E-Mail-Adresse ein."
-//            showAlert = true
-//            return false
-//        }
-//        
-//        // Prüfen, ob das Passwort leer ist
-//        if password.isEmpty {
-//            alertMessage = "Bitte geben Sie ein Passwort ein."
-//            showAlert = true
-//            return false
-//        }
-//        
-//        // Prüfen, ob das Passwort mit der Passwortbestätigung übereinstimmt
-//        if password != correctPassword {
-//            alertMessage = "Ihr Passwort stimmt nicht überein."
-//            showAlert = true
-//            return false
-//        }
-//        
-//        // Prüfen, ob das Alter eingetragen ist und eine gültige Zahl darstellt
-//        if age.isEmpty || Int(age) == nil {
-//            alertMessage = "Bitte geben Sie Ihr Alter als Zahl ein."
-//            showAlert = true
-//            return false
-//        }
-//        
-//        // Wenn alle Prüfungen erfolgreich waren
-//        return true
-//    }
-//    
+    func validateRegisterFields() -> Bool {
+        // Prüfen, ob der Vorname leer ist
+        if name.isEmpty || lastName.isEmpty || emailAdress.isEmpty || password.isEmpty || password != correctPassword || age.isEmpty || Int(age) == nil { //ist die Eingabe konvertierbar in ein INT
+            return false
+        }
+        return true
+    }
+    
     func logout() {
         do{
             try FirebaseManager.shared.auth.signOut()

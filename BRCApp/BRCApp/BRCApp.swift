@@ -26,10 +26,10 @@ struct BRCApp: App {
     var body: some Scene {
         WindowGroup {
             if authViewModel.userIsLoggedIn{
-                HomeView()
+                MainTabView()
             } else{
                 AuthenticationView()
-                    .preferredColorScheme(.light)
+                  .preferredColorScheme(.dark) // Light oder Darkmodus erzwingen
                 }
         } .environmentObject(authViewModel)
             

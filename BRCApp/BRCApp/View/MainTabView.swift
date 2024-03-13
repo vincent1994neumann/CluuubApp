@@ -7,12 +7,24 @@
 
 import SwiftUI
 
-struct HomeView: View {
+enum Tabs {
+    case    homeView
+    case    letsGoRowingView
+    case    newsView
+    case    chatView
+}
+
+struct MainTabView: View {
     
     @EnvironmentObject var authViewModel : AuthenticationViewModel
+    @State private var selectedTab: Tabs = .homeView
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        TabView(selection: $selectedTab){
+            
+        }
+        
         Button("Sign Out"){
             authViewModel.logout()
             
@@ -21,5 +33,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    MainTabView()
 }

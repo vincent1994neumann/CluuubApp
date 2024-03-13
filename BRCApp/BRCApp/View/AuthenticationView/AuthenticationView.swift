@@ -18,13 +18,19 @@ struct AuthenticationView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Text("Hello")
-                Text("\(appName)")
+                Text("Let's Go Rowing")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .padding(.bottom, 150)
+                    .padding(.bottom, 32)
+                    .padding(.top, 32)
                     .foregroundColor(.blue)
                 
+                Image("BRC_Logo")
+                    .resizable()
+                    .scaledToFit()
+                
+                Spacer()
+                                                            
                 HStack{
                     Text("Logindaten:")
                     Spacer()
@@ -65,9 +71,10 @@ struct AuthenticationView: View {
                 }
                 .padding(.top,8)
                 
+                Spacer()
             }.alert(isPresented: $authViewModel.showAlert) {
                 Alert(title: Text("Fehler"), message: Text(authViewModel.alertMessage), dismissButton: .default(Text("OK")))
-            }.navigationTitle("Login")
+            }//.navigationTitle("Login")
         }
     }
 }

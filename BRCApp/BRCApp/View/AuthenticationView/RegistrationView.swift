@@ -11,7 +11,8 @@ struct RegistrationView: View {
     
     @EnvironmentObject var authViewModel : AuthenticationViewModel
     @Environment(\.dismiss) private var dismiss
-
+    @State private var showingAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationStack{
@@ -45,10 +46,20 @@ struct RegistrationView: View {
                     HStack{
                         Spacer()
                         Button("Registrieren"){
-                            authViewModel.register()
-                            dismiss()
+                            if authViewModel.validateRegisterFields(){
+                                authViewModel.register()
+                                dismiss()
+                            }else{
+                                showingAlert = true
+                                alertMessage = "Bitte vervollständigen Sie Ihre Angaben. Stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind, einschließlich Name, Alter, E-Mail und Passwort."
+
+                                
+                            }
+                            
                         }
                         Spacer()
+                    }.alert(isPresented: $showingAlert){
+                        Alert(title: Text("Fehler"), message: Text(alertMessage))
                     }
                 }
             }.toolbar{
