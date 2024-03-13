@@ -6,17 +6,30 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+
 
 @main
 struct BRCApp: App {
     
-    @StateObject private var authViewModel =
-    AuthenticationView
+    @StateObject private var authViewModel = AuthenticationViewModel()
+    
+    init(){
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        FirebaseApp.configure()
+        
+        //weiter init von Setup
+    }
     
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
+            if authViewModel.userIsLoggedIn{
+                HomeView()
+            } else{
+                AuthenticationView()
+                }
+        } .environmentObject(authViewModel)
     }
 }

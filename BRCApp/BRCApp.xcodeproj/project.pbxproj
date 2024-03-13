@@ -26,6 +26,7 @@
 		BF9835852B9F5D8200F84785 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BF9835842B9F5D8200F84785 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		BF9835872B9F5D8700F84785 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BF9835862B9F5D8700F84785 /* FirebaseCrashlytics */; };
 		BF9835892B9F5D9000F84785 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF9835882B9F5D9000F84785 /* FirebaseFirestoreSwift */; };
+		BF98358B2BA07D5600F84785 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98358A2BA07D5600F84785 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		BF9835702B9F5B6300F84785 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		BF9835722B9F5B8100F84785 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BF9835742B9F5CC200F84785 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BF98358A2BA07D5600F84785 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		BF9835652B9F583E00F84785 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BF98358A2BA07D5600F84785 /* HomeView.swift */,
 				BF98356F2B9F5B4C00F84785 /* AuthenticationView */,
 			);
 			path = View;
@@ -241,6 +244,7 @@
 				BF9835712B9F5B6300F84785 /* AuthenticationView.swift in Sources */,
 				BF9835732B9F5B8100F84785 /* RegistrationView.swift in Sources */,
 				BF98355A2B9F572100F84785 /* ContentView.swift in Sources */,
+				BF98358B2BA07D5600F84785 /* HomeView.swift in Sources */,
 				BF9835582B9F572100F84785 /* BRCApp.swift in Sources */,
 				BF9835692B9F587C00F84785 /* Rower.swift in Sources */,
 			);

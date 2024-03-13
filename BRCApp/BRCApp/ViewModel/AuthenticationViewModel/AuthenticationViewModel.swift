@@ -12,22 +12,113 @@ import FirebaseFirestore
 class AuthenticationViewModel : ObservableObject{
     @Published var user : Rower?
     @Published var emailAdress : String = ""
-    @Published var passwort: String = ""
-    @Published var userName: String = ""
+    @Published var password: String = ""
+    @Published var name: String = ""
+    @Published var lastName : String = ""
+    @Published var age : Int = 0
+    @Published var skull : Bool = false
+    @Published var riemen : Bool = false
+    @Published var bb : Bool = false
+    @Published var sb : Bool = false
+    
+    
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    
     
     var userIsLoggedIn : Bool { // Prüft ob der User eingeloggt ist
         self.user != nil
     }
     
+    init(){
+    checkAuth()
+    }
     
-    private func checkAuth() {
+    
+    private func checkAuth(){
         guard let currentUser = FirebaseManager.shared.auth.currentUser else {
             print("user not logged in")
             return
         }
-         
+        self.fetchFireUser(withId: currentUser.uid)
+
     }
     
+    func register(){
+        FirebaseManager.shared.auth.createUser(withEmail: self.emailAdress, password: self.password){
+            authResult, error in
+            if let user = self.handleAuthResult(authResult: authResult, error: error){
+                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, password: self.password, skull: false, riemen: false, bb: false, sb: false)
+                do{
+                    try FirebaseManager.shared.fireStore.collection("user").document(user.uid).setData(from: fireUser)
+                }catch{
+                    print("Registrierung fehlgeschlagen: \(error)")
+                }
+            }
+        }
+    }
+    
+
+    
+    
+    func login() {
+        FirebaseManager.shared.auth.signIn(withEmail: self.emailAdress, password: self.password){
+            authResult, error in
+            if let user = self.handleAuthResult(authResult: authResult, error: error){
+                self.fetchFireUser(withId: user.uid)
+            }
+        }
+    }
+    
+    private func handleAuthResult(authResult: AuthDataResult?, error: Error?) -> User? {
+        if let error = error {
+            self.alertMessage = "Es ist ein Fehler bei der Registrierung aufgetreten : \(error.localizedDescription)"
+            self.showAlert = true
+            return nil
+        }else if let user = authResult?.user {
+            
+            return user
+        }
+        return nil
+    }
+    
+    private func fetchFireUser(withId id : String){
+        FirebaseManager.shared.fireStore.collection("users").document(id).getDocument{document, error in
+            if let error {
+                print("Error beim Abrufen des Users \(id): \(error)")
+                return
+            }
+            guard let document else {
+                print("Document mit id \(id) ist leer")
+                return
+            }
+            do{
+                let fireUser = try document.data(as: Rower.self)
+                self.user = fireUser
+            } catch{
+                print("Error beim setzen des Users \(error)")
+            }
+        }
+    }
+    
+    
+    
+    
+    //Überprüfung, ob alle LogIn Felder befüllt wurden.
+    func validateLoginFields() -> Bool {
+        if emailAdress.isEmpty || password.isEmpty {
+            alertMessage = "Bitte vervollständigen Sie Ihre Login-Daten."
+            showAlert = true
+            return false
+        }
+        return true
+    }
+    
+    func logout() {
+        do{
+            //TODO 
+        }
+    }
     
     
 }

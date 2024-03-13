@@ -8,7 +8,7 @@
 import Foundation
 
 struct Rower: Codable{
-    let id : UUID
+    let id : String
     let name : String
     let lastName : String
     let age : Int
