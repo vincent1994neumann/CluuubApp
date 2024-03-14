@@ -11,8 +11,6 @@ struct RegistrationView: View {
     
     @EnvironmentObject var authViewModel : AuthenticationViewModel
     @Environment(\.dismiss) private var dismiss
-    @State private var showingAlert = false
-    @State private var alertMessage = ""
     
     var body: some View {
         NavigationStack{
@@ -21,7 +19,7 @@ struct RegistrationView: View {
                     TextField("Vorname", text: $authViewModel.name)
                     TextField("Nachname", text: $authViewModel.lastName)
                     TextField("Alter", text: $authViewModel.age)
-                            .keyboardType(.numberPad)
+                        .keyboardType(.numberPad)
                     
                     TextField("E-Mail Adresse", text: $authViewModel.emailAdress)
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
@@ -46,22 +44,24 @@ struct RegistrationView: View {
                     HStack{
                         Spacer()
                         Button("Registrieren"){
-                            if authViewModel.validateRegisterFields(){
+                            if authViewModel.validateRegisterFields() {
                                 authViewModel.register()
-                                dismiss()
-                            }else{
-                                showingAlert = true
-                                alertMessage = "Bitte vervollständigen Sie Ihre Angaben. Stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind, einschließlich Name, Alter, E-Mail und Passwort."
-
-                                
                             }
-                            
                         }
                         Spacer()
-                    }.alert(isPresented: $showingAlert){
-                        Alert(title: Text("Fehler"), message: Text(alertMessage))
+                    }.alert("Hinweis", 
+                        isPresented: $authViewModel.showAlert,
+                        actions: {
+                            Button("OK"){
+                            if authViewModel.registrationSuccessful {
+                                dismiss()
+                                }
+                            }
+                        },
+                        message: {
+                            Text(authViewModel.alertMessage)
+                            })
                     }
-                }
             }.toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button("Abbrechen"){

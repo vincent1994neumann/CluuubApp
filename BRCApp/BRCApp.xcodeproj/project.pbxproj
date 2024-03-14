@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF772EB42BA21221008C901A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB32BA21220008C901A /* HomeView.swift */; };
+		BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB52BA21239008C901A /* LetsGoRowingView.swift */; };
+		BF772EB82BA21257008C901A /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB72BA21257008C901A /* NewsView.swift */; };
+		BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB92BA2126E008C901A /* ChatView.swift */; };
+		BF772EBD2BA30759008C901A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EBC2BA30759008C901A /* HomeViewModel.swift */; };
+		BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EC12BA31B65008C901A /* GalleryImage.swift */; };
 		BF9835582B9F572100F84785 /* BRCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835572B9F572100F84785 /* BRCApp.swift */; };
 		BF98355A2B9F572100F84785 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835592B9F572100F84785 /* ContentView.swift */; };
 		BF98355C2B9F572200F84785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF98355B2B9F572200F84785 /* Assets.xcassets */; };
@@ -30,6 +36,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF772EB32BA21220008C901A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BF772EB52BA21239008C901A /* LetsGoRowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingView.swift; sourceTree = "<group>"; };
+		BF772EB72BA21257008C901A /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		BF772EB92BA2126E008C901A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		BF772EBC2BA30759008C901A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BF772EC12BA31B65008C901A /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
 		BF9835542B9F572100F84785 /* BRCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9835572B9F572100F84785 /* BRCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRCApp.swift; sourceTree = "<group>"; };
 		BF9835592B9F572100F84785 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF772EBB2BA30741008C901A /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EB32BA21220008C901A /* HomeView.swift */,
+				BF772EBC2BA30759008C901A /* HomeViewModel.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		BF98354B2B9F572100F84785 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				BF98358A2BA07D5600F84785 /* MainTabView.swift */,
+				BF772EBB2BA30741008C901A /* HomeView */,
+				BF772EB52BA21239008C901A /* LetsGoRowingView.swift */,
+				BF772EB72BA21257008C901A /* NewsView.swift */,
+				BF772EB92BA2126E008C901A /* ChatView.swift */,
 				BF98356F2B9F5B4C00F84785 /* AuthenticationView */,
 			);
 			path = View;
@@ -118,6 +143,7 @@
 			children = (
 				BF9835682B9F587C00F84785 /* Rower.swift */,
 				BF98356A2B9F599B00F84785 /* FirebaseManager.swift */,
+				BF772EC12BA31B65008C901A /* GalleryImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,7 +151,6 @@
 		BF9835672B9F585100F84785 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BF98356C2B9F5B3E00F84785 /* AuthenticationViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -143,6 +168,7 @@
 			children = (
 				BF9835702B9F5B6300F84785 /* AuthenticationView.swift */,
 				BF9835722B9F5B8100F84785 /* RegistrationView.swift */,
+				BF98356C2B9F5B3E00F84785 /* AuthenticationViewModel */,
 			);
 			path = AuthenticationView;
 			sourceTree = "<group>";
@@ -239,10 +265,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF772EB42BA21221008C901A /* HomeView.swift in Sources */,
+				BF772EB82BA21257008C901A /* NewsView.swift in Sources */,
 				BF98356B2B9F599B00F84785 /* FirebaseManager.swift in Sources */,
+				BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */,
+				BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */,
 				BF98356E2B9F5B4500F84785 /* AuthenticationViewModel.swift in Sources */,
+				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
 				BF9835712B9F5B6300F84785 /* AuthenticationView.swift in Sources */,
 				BF9835732B9F5B8100F84785 /* RegistrationView.swift in Sources */,
+				BF772EBD2BA30759008C901A /* HomeViewModel.swift in Sources */,
 				BF98355A2B9F572100F84785 /* ContentView.swift in Sources */,
 				BF98358B2BA07D5600F84785 /* MainTabView.swift in Sources */,
 				BF9835582B9F572100F84785 /* BRCApp.swift in Sources */,

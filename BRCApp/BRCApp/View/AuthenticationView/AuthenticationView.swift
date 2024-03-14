@@ -21,8 +21,8 @@ struct AuthenticationView: View {
                 Text("Let's Go Rowing")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .padding(.bottom, 32)
-                    .padding(.top, 32)
+                    .padding(.bottom, 24)
+                    .padding(.top, 24)
                     .foregroundColor(.blue)
                 
                 Image("BRC_Logo")
@@ -34,7 +34,7 @@ struct AuthenticationView: View {
                 HStack{
                     Text("Logindaten:")
                     Spacer()
-                }.padding(.leading, 18)
+                }.padding(.leading, 16)
                 
                 TextField("E-Mail Adresse", text: $authViewModel.emailAdress)
                     .textFieldStyle(.roundedBorder)
@@ -44,7 +44,7 @@ struct AuthenticationView: View {
                 SecureField("Passwort", text: $authViewModel.password)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
-                    .padding(.top, 10)
+                    .padding(.top, 8)
                 
                 
                 
@@ -55,7 +55,7 @@ struct AuthenticationView: View {
                         print("Login done")
                     }
                 }.buttonStyle(.borderedProminent)
-                    .padding(.top, 20)
+                    .padding(.top, 24)
                 
                 Divider()
                     .padding()
@@ -73,7 +73,7 @@ struct AuthenticationView: View {
                 
                 Spacer()
             }.alert(isPresented: $authViewModel.showAlert) {
-                Alert(title: Text("Fehler"), message: Text(authViewModel.alertMessage), dismissButton: .default(Text("OK")))
+                Alert(title: Text("Error"), message: Text(authViewModel.alertMessage), dismissButton: .default(Text("OK")))
             }//.navigationTitle("Login")
         }
     }

@@ -16,18 +16,36 @@ enum Tabs {
 
 struct MainTabView: View {
     
-    @EnvironmentObject var authViewModel : AuthenticationViewModel
+    
     @State private var selectedTab: Tabs = .homeView
     
     var body: some View {
         
         TabView(selection: $selectedTab){
+            HomeView(viewModel: HomeViewModel(), selectedTab: $selectedTab)
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+                .tag(Tabs.homeView)
             
-        }
-        
-        Button("Sign Out"){
-            authViewModel.logout()
+            LetsGoRowingView(selectedTab: $selectedTab)
+                .tabItem {
+                    Label("Rowing", systemImage: "flag.checkered")
+                }
+                .tag(Tabs.letsGoRowingView)
             
+            NewsView(selectedTab: $selectedTab)
+                .tabItem {
+                    Label("News", systemImage: "newspaper")
+                }
+                .tag(Tabs.newsView)
+            
+            ChatView(selectedTab: $selectedTab)
+                .tabItem {
+                    Label("Chat", systemImage: "bubble")
+                }
+                .tag(Tabs.chatView)
+
         }
     }
 }

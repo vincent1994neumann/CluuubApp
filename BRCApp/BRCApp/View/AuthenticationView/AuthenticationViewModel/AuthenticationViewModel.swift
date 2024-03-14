@@ -22,17 +22,18 @@ class AuthenticationViewModel : ObservableObject{
     @Published var bb : Bool = false
     @Published var sb : Bool = false
     @Published var trailerDrivingLicence: Bool = false
-    
+    @Published var admin: Bool = false
     @Published var showAlert = false
     @Published var alertMessage = ""
-    
+    @Published var registrationSuccessful : Bool = false
+  
     
     var userIsLoggedIn : Bool { // Prüft ob der User eingeloggt ist
         self.user != nil
     }
     
     init(){
-    checkAuth()
+        checkAuth()
     }
     
     
@@ -42,8 +43,9 @@ class AuthenticationViewModel : ObservableObject{
             return
         }
         self.fetchFireUser(withId: currentUser.uid)
-
+        
     }
+    
     
     func register(){
         FirebaseManager.shared.auth.createUser(withEmail: self.emailAdress, password: self.password){
@@ -61,7 +63,7 @@ class AuthenticationViewModel : ObservableObject{
     
     private func handleAuthResult(authResult: AuthDataResult?, error: Error?) -> User? {
         if let error = error {
-            self.alertMessage = "Es ist ein Fehler bei der Registrierung aufgetreten : \(error.localizedDescription)"
+            self.alertMessage = "Es ist ein Fehler aufgetreten: \(error.localizedDescription)"
             self.showAlert = true
             return nil
         }else if let user = authResult?.user {
@@ -81,7 +83,7 @@ class AuthenticationViewModel : ObservableObject{
         }
     }
     
-   
+    
     
     private func fetchFireUser(withId id : String){
         FirebaseManager.shared.fireStore.collection("user").document(id).getDocument{document, error in
@@ -116,11 +118,17 @@ class AuthenticationViewModel : ObservableObject{
     }
     
     func validateRegisterFields() -> Bool {
-        // Prüfen, ob der Vorname leer ist
-        if name.isEmpty || lastName.isEmpty || emailAdress.isEmpty || password.isEmpty || password != correctPassword || age.isEmpty || Int(age) == nil { //ist die Eingabe konvertierbar in ein INT
+        if name.isEmpty || lastName.isEmpty || emailAdress.isEmpty || password.isEmpty || password != correctPassword || age.isEmpty || Int(age) == nil { //Checked ob die Eingabe konvertierbar in ein INT ist
+            self.alertMessage = "Bitte vervollständigen Sie Ihre Angaben. Stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind, einschließlich Name, Alter, E-Mail und Passwort."
+            self.showAlert = true
+            registrationSuccessful = false
             return false
+        }else{
+            self.alertMessage = "Herzlich Willkommen \(self.name)\nSie haben sich erfolgreich registriert.\nE-Mail: \(self.emailAdress)"
+            self.showAlert = true
+            registrationSuccessful = true
+            return true
         }
-        return true
     }
     
     func logout() {
