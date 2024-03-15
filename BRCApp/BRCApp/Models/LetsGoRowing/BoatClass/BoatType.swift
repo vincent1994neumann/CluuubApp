@@ -8,12 +8,10 @@
 import Foundation
 
 struct BoatType: Codable {
-    var doubleSkull = [Rower, Rower]
-    var quadSkull = [Rower, Rower, Rower, Rower]
-    var coxedQuadSkull = [Rower, Rower, Rower, Rower, Rower]
-    var coxlessPair = [Rower, Rower]
-    var coxlessFour =[Rower, Rower, Rower, Rower]
-    var coxedFour = [Rower, Rower, Rower, Rower, Rower]
+    var double = [Rower, Rower]
+    var coxedDoub = [Rower, Rower, Rower]
+    var quad = [Rower, Rower, Rower, Rower]
+    var coxedQuad = [Rower, Rower, Rower, Rower, Rower]
     var eight = [Rower, Rower, Rower, Rower, Rower, Rower, Rower, Rower, Rower]
     
 //    var seatCount: Int {
