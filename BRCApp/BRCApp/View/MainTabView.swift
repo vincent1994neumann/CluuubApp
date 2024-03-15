@@ -22,7 +22,7 @@ struct MainTabView: View {
     var body: some View {
         
         TabView(selection: $selectedTab){
-            HomeView(viewModel: HomeViewModel(), selectedTab: $selectedTab)
+            HomeView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

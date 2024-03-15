@@ -12,9 +12,9 @@ class HomeViewModel: ObservableObject, Identifiable{
     
     @Published var images : [GalleryImage] = [
         GalleryImage(name: "Anrudern"),
-        GalleryImage(name: "Olympia"),
         GalleryImage(name: "BW2018"),
         GalleryImage(name: "Bootsplatz"),
+        GalleryImage(name: "Olympia"),
         GalleryImage(name: "TrainerBootsTaufe")
     ]
     
@@ -25,12 +25,15 @@ class HomeViewModel: ObservableObject, Identifiable{
     init(){
         startTimer()
     }
+    deinit{
+        print("HomeViewModel deinitialist")
+    }
     
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { [weak self] _ in
             guard let self = self else {return}
             withAnimation {
-                self.currentIndex = (self.currentIndex + 1) % self.images.count
+                self.currentIndex = (self.currentIndex + 1) % self.images.count 
             }
         }
     }

@@ -13,6 +13,11 @@
 		BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB92BA2126E008C901A /* ChatView.swift */; };
 		BF772EBD2BA30759008C901A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EBC2BA30759008C901A /* HomeViewModel.swift */; };
 		BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EC12BA31B65008C901A /* GalleryImage.swift */; };
+		BF772EC42BA32FDB008C901A /* LetsGoRowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EC32BA32FDB008C901A /* LetsGoRowingRequest.swift */; };
+		BF772EC62BA33063008C901A /* BoatClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EC52BA33063008C901A /* BoatClass.swift */; };
+		BF772ECB2BA44A46008C901A /* SkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECA2BA44A46008C901A /* SkillLevel.swift */; };
+		BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECD2BA44EE9008C901A /* BoatType.swift */; };
+		BF772ED02BA44F63008C901A /* RowingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECF2BA44F63008C901A /* RowingStyle.swift */; };
 		BF9835582B9F572100F84785 /* BRCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835572B9F572100F84785 /* BRCApp.swift */; };
 		BF98355A2B9F572100F84785 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835592B9F572100F84785 /* ContentView.swift */; };
 		BF98355C2B9F572200F84785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF98355B2B9F572200F84785 /* Assets.xcassets */; };
@@ -42,6 +47,11 @@
 		BF772EB92BA2126E008C901A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		BF772EBC2BA30759008C901A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BF772EC12BA31B65008C901A /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
+		BF772EC32BA32FDB008C901A /* LetsGoRowingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingRequest.swift; sourceTree = "<group>"; };
+		BF772EC52BA33063008C901A /* BoatClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatClass.swift; sourceTree = "<group>"; };
+		BF772ECA2BA44A46008C901A /* SkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillLevel.swift; sourceTree = "<group>"; };
+		BF772ECD2BA44EE9008C901A /* BoatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatType.swift; sourceTree = "<group>"; };
+		BF772ECF2BA44F63008C901A /* RowingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowingStyle.swift; sourceTree = "<group>"; };
 		BF9835542B9F572100F84785 /* BRCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9835572B9F572100F84785 /* BRCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRCApp.swift; sourceTree = "<group>"; };
 		BF9835592B9F572100F84785 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +95,42 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
+		BF772EC72BA449E6008C901A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BF9835682B9F587C00F84785 /* Rower.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		BF772EC82BA449F6008C901A /* LetsGoRowing */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EC32BA32FDB008C901A /* LetsGoRowingRequest.swift */,
+				BF772ECC2BA44D40008C901A /* BoatClass */,
+				BF772ECA2BA44A46008C901A /* SkillLevel.swift */,
+			);
+			path = LetsGoRowing;
+			sourceTree = "<group>";
+		};
+		BF772EC92BA44A10008C901A /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EC12BA31B65008C901A /* GalleryImage.swift */,
+			);
+			path = ImageGallery;
+			sourceTree = "<group>";
+		};
+		BF772ECC2BA44D40008C901A /* BoatClass */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EC52BA33063008C901A /* BoatClass.swift */,
+				BF772ECD2BA44EE9008C901A /* BoatType.swift */,
+				BF772ECF2BA44F63008C901A /* RowingStyle.swift */,
+			);
+			path = BoatClass;
+			sourceTree = "<group>";
+		};
 		BF98354B2B9F572100F84785 = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +153,6 @@
 			children = (
 				BF9835662B9F584600F84785 /* Models */,
 				BF9835652B9F583E00F84785 /* View */,
-				BF9835672B9F585100F84785 /* ViewModel */,
 				BF9835572B9F572100F84785 /* BRCApp.swift */,
 				BF9835592B9F572100F84785 /* ContentView.swift */,
 				BF98355B2B9F572200F84785 /* Assets.xcassets */,
@@ -141,18 +186,12 @@
 		BF9835662B9F584600F84785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF9835682B9F587C00F84785 /* Rower.swift */,
 				BF98356A2B9F599B00F84785 /* FirebaseManager.swift */,
-				BF772EC12BA31B65008C901A /* GalleryImage.swift */,
+				BF772EC72BA449E6008C901A /* User */,
+				BF772EC82BA449F6008C901A /* LetsGoRowing */,
+				BF772EC92BA44A10008C901A /* ImageGallery */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		BF9835672B9F585100F84785 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BF98356C2B9F5B3E00F84785 /* AuthenticationViewModel */ = {
@@ -268,10 +307,15 @@
 				BF772EB42BA21221008C901A /* HomeView.swift in Sources */,
 				BF772EB82BA21257008C901A /* NewsView.swift in Sources */,
 				BF98356B2B9F599B00F84785 /* FirebaseManager.swift in Sources */,
+				BF772EC42BA32FDB008C901A /* LetsGoRowingRequest.swift in Sources */,
+				BF772ED02BA44F63008C901A /* RowingStyle.swift in Sources */,
 				BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */,
 				BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */,
+				BF772EC62BA33063008C901A /* BoatClass.swift in Sources */,
 				BF98356E2B9F5B4500F84785 /* AuthenticationViewModel.swift in Sources */,
 				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
+				BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */,
+				BF772ECB2BA44A46008C901A /* SkillLevel.swift in Sources */,
 				BF9835712B9F5B6300F84785 /* AuthenticationView.swift in Sources */,
 				BF9835732B9F5B8100F84785 /* RegistrationView.swift in Sources */,
 				BF772EBD2BA30759008C901A /* HomeViewModel.swift in Sources */,

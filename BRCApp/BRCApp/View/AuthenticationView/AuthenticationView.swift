@@ -49,10 +49,8 @@ struct AuthenticationView: View {
                 
                 
                 Button("Login"){
-                    print("Log 1")
                     if authViewModel.validateLoginFields(){
                         authViewModel.login()
-                        print("Login done")
                     }
                 }.buttonStyle(.borderedProminent)
                     .padding(.top, 24)

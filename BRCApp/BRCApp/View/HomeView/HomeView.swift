@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var authViewModel : AuthenticationViewModel
-    @ObservedObject var viewModel : HomeViewModel
+    @StateObject var viewModel = HomeViewModel()
     @Binding var selectedTab: Tabs
     
     
@@ -37,9 +37,6 @@ struct HomeView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
                 .frame(width: geometry.size.width, height: 180)
-            }
-            .onDisappear{
-                viewModel.stopTimer()
             }
         }
     }

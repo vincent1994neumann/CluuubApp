@@ -7,17 +7,18 @@
 
 import Foundation
 
-struct Rower: Codable{
+ struct Rower: Codable{
     let id : String
     let name : String
     let lastName : String
     let age : String
     let eMail : String
-    let password : String
+    let password : String // sollte hier nicht gespeichert werden
     let skull: Bool
     let riemen : Bool
     let bb : Bool
     let sb : Bool
     var trailerDrivingLicence : Bool
     var admin :Bool
+     //var skillLevel : SkillLevel
 }
