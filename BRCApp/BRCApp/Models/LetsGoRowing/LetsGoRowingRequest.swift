@@ -9,21 +9,16 @@ import Foundation
 
 struct LetsGoRowingRequest : Codable, Identifiable {
     let id : UUID
-    var boatClass : BoatClass
     let publishedBy : Rower
+    var boatClass : BoatClass
     var publishedDate = Date()
-    let rowingDate : Date
+    var rowingDate : Date
     let totalSeats : Int
-    var availableSeats : Int { // Berechne die verfügbaren Sitze basierend auf der aktuellen Crew
-        totalSeats - boatClass.crew.count
-    }
-    let rowerList : [Rower] {
-        boatClass.crew
-    }
+    var availableSeats : Int 
+    var rowerList : [Rower]?
     var requestClosed : Bool
     var skillLevel : SkillLevel
     var duration : TimeInterval?
     var distance: Double?
     var notes : String?
-    
 }

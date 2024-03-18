@@ -7,24 +7,25 @@
 
 import Foundation
 
-struct BoatType: Codable {
-    var double = [Rower, Rower]
-    var coxedDoub = [Rower, Rower, Rower]
-    var quad = [Rower, Rower, Rower, Rower]
-    var coxedQuad = [Rower, Rower, Rower, Rower, Rower]
-    var eight = [Rower, Rower, Rower, Rower, Rower, Rower, Rower, Rower, Rower]
-    
-//    var seatCount: Int {
-//        switch self {
-//        case .singleSkull: return 1
-//        case .doubleSkull: return 2
-//        case .quadSkull: return 4
-//        case .coxedQuadSkull: return 5
-//        case .coxlessPair: return 2
-//        case .coxlessFour: return 4
-//        case .coxedFour: return 5
-//        case .eight: return 9
-//        }
-//    }
+enum BoatType: String, Codable {
+    case double = "Zweier"
+    case coxedDouble = "Zweier mit Steuermann"
+    case quad = "Vierer"
+    case coxedQuad = "Vierer mit Steuermann"
+    case eight = "Achter mit Steuermann"
+ 
+    var rowerList: Int {
+        switch self {
+        case .double:
+            2
+        case .coxedDouble:
+            3
+        case .quad:
+            4
+        case .coxedQuad:
+            5
+        case .eight:
+            9
+        }
+    }
 }
-//a

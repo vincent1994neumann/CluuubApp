@@ -18,6 +18,10 @@
 		BF772ECB2BA44A46008C901A /* SkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECA2BA44A46008C901A /* SkillLevel.swift */; };
 		BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECD2BA44EE9008C901A /* BoatType.swift */; };
 		BF772ED02BA44F63008C901A /* RowingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ECF2BA44F63008C901A /* RowingStyle.swift */; };
+		BF772ED22BA5BD13008C901A /* LetsGoRowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ED12BA5BD13008C901A /* LetsGoRowingViewModel.swift */; };
+		BF772ED62BA5BD56008C901A /* LetsGoRowingRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ED52BA5BD56008C901A /* LetsGoRowingRequestView.swift */; };
+		BF772ED82BA5BDE9008C901A /* LetsGoRowingRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772ED72BA5BDE9008C901A /* LetsGoRowingRequestViewModel.swift */; };
+		BF772EDE2BA5E94C008C901A /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EDD2BA5E94C008C901A /* SideMenuItem.swift */; };
 		BF9835582B9F572100F84785 /* BRCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835572B9F572100F84785 /* BRCApp.swift */; };
 		BF98355A2B9F572100F84785 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9835592B9F572100F84785 /* ContentView.swift */; };
 		BF98355C2B9F572200F84785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF98355B2B9F572200F84785 /* Assets.xcassets */; };
@@ -38,6 +42,10 @@
 		BF9835872B9F5D8700F84785 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BF9835862B9F5D8700F84785 /* FirebaseCrashlytics */; };
 		BF9835892B9F5D9000F84785 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF9835882B9F5D9000F84785 /* FirebaseFirestoreSwift */; };
 		BF98358B2BA07D5600F84785 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98358A2BA07D5600F84785 /* MainTabView.swift */; };
+		BFCD71E72BA84435001F5D8B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71E62BA84435001F5D8B /* SettingsView.swift */; };
+		BFCD71E92BA8444B001F5D8B /* ProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71E82BA8444B001F5D8B /* ProfilView.swift */; };
+		BFCD71EB2BA8446D001F5D8B /* ClubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */; };
+		BFCD71ED2BA846DC001F5D8B /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71EC2BA846DC001F5D8B /* SideMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +60,10 @@
 		BF772ECA2BA44A46008C901A /* SkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillLevel.swift; sourceTree = "<group>"; };
 		BF772ECD2BA44EE9008C901A /* BoatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatType.swift; sourceTree = "<group>"; };
 		BF772ECF2BA44F63008C901A /* RowingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowingStyle.swift; sourceTree = "<group>"; };
+		BF772ED12BA5BD13008C901A /* LetsGoRowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingViewModel.swift; sourceTree = "<group>"; };
+		BF772ED52BA5BD56008C901A /* LetsGoRowingRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingRequestView.swift; sourceTree = "<group>"; };
+		BF772ED72BA5BDE9008C901A /* LetsGoRowingRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingRequestViewModel.swift; sourceTree = "<group>"; };
+		BF772EDD2BA5E94C008C901A /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
 		BF9835542B9F572100F84785 /* BRCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9835572B9F572100F84785 /* BRCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRCApp.swift; sourceTree = "<group>"; };
 		BF9835592B9F572100F84785 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +76,10 @@
 		BF9835722B9F5B8100F84785 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BF9835742B9F5CC200F84785 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF98358A2BA07D5600F84785 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BFCD71E62BA84435001F5D8B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BFCD71E82BA8444B001F5D8B /* ProfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilView.swift; sourceTree = "<group>"; };
+		BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoView.swift; sourceTree = "<group>"; };
+		BFCD71EC2BA846DC001F5D8B /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +107,7 @@
 			children = (
 				BF772EB32BA21220008C901A /* HomeView.swift */,
 				BF772EBC2BA30759008C901A /* HomeViewModel.swift */,
+				BF772EDA2BA5E67F008C901A /* SideMenü */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -108,7 +125,6 @@
 			children = (
 				BF772EC32BA32FDB008C901A /* LetsGoRowingRequest.swift */,
 				BF772ECC2BA44D40008C901A /* BoatClass */,
-				BF772ECA2BA44A46008C901A /* SkillLevel.swift */,
 			);
 			path = LetsGoRowing;
 			sourceTree = "<group>";
@@ -127,8 +143,37 @@
 				BF772EC52BA33063008C901A /* BoatClass.swift */,
 				BF772ECD2BA44EE9008C901A /* BoatType.swift */,
 				BF772ECF2BA44F63008C901A /* RowingStyle.swift */,
+				BF772ECA2BA44A46008C901A /* SkillLevel.swift */,
 			);
 			path = BoatClass;
+			sourceTree = "<group>";
+		};
+		BF772ED32BA5BD17008C901A /* LetsGoRowingView */ = {
+			isa = PBXGroup;
+			children = (
+				BF772ED42BA5BD39008C901A /* LetsGoRowingRequestView */,
+				BF772EB52BA21239008C901A /* LetsGoRowingView.swift */,
+				BF772ED12BA5BD13008C901A /* LetsGoRowingViewModel.swift */,
+			);
+			path = LetsGoRowingView;
+			sourceTree = "<group>";
+		};
+		BF772ED42BA5BD39008C901A /* LetsGoRowingRequestView */ = {
+			isa = PBXGroup;
+			children = (
+				BF772ED52BA5BD56008C901A /* LetsGoRowingRequestView.swift */,
+				BF772ED72BA5BDE9008C901A /* LetsGoRowingRequestViewModel.swift */,
+			);
+			path = LetsGoRowingRequestView;
+			sourceTree = "<group>";
+		};
+		BF772EDA2BA5E67F008C901A /* SideMenü */ = {
+			isa = PBXGroup;
+			children = (
+				BFCD71EC2BA846DC001F5D8B /* SideMenuView.swift */,
+			);
+			name = "SideMenü";
+			path = "SideMenü";
 			sourceTree = "<group>";
 		};
 		BF98354B2B9F572100F84785 = {
@@ -175,9 +220,12 @@
 			children = (
 				BF98358A2BA07D5600F84785 /* MainTabView.swift */,
 				BF772EBB2BA30741008C901A /* HomeView */,
-				BF772EB52BA21239008C901A /* LetsGoRowingView.swift */,
+				BF772ED32BA5BD17008C901A /* LetsGoRowingView */,
 				BF772EB72BA21257008C901A /* NewsView.swift */,
 				BF772EB92BA2126E008C901A /* ChatView.swift */,
+				BFCD71E62BA84435001F5D8B /* SettingsView.swift */,
+				BFCD71E82BA8444B001F5D8B /* ProfilView.swift */,
+				BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */,
 				BF98356F2B9F5B4C00F84785 /* AuthenticationView */,
 			);
 			path = View;
@@ -190,6 +238,7 @@
 				BF772EC72BA449E6008C901A /* User */,
 				BF772EC82BA449F6008C901A /* LetsGoRowing */,
 				BF772EC92BA44A10008C901A /* ImageGallery */,
+				BF772EDD2BA5E94C008C901A /* SideMenuItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,13 +355,20 @@
 			files = (
 				BF772EB42BA21221008C901A /* HomeView.swift in Sources */,
 				BF772EB82BA21257008C901A /* NewsView.swift in Sources */,
+				BF772ED82BA5BDE9008C901A /* LetsGoRowingRequestViewModel.swift in Sources */,
 				BF98356B2B9F599B00F84785 /* FirebaseManager.swift in Sources */,
 				BF772EC42BA32FDB008C901A /* LetsGoRowingRequest.swift in Sources */,
 				BF772ED02BA44F63008C901A /* RowingStyle.swift in Sources */,
 				BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */,
+				BF772ED22BA5BD13008C901A /* LetsGoRowingViewModel.swift in Sources */,
 				BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */,
+				BF772ED62BA5BD56008C901A /* LetsGoRowingRequestView.swift in Sources */,
 				BF772EC62BA33063008C901A /* BoatClass.swift in Sources */,
+				BF772EDE2BA5E94C008C901A /* SideMenuItem.swift in Sources */,
 				BF98356E2B9F5B4500F84785 /* AuthenticationViewModel.swift in Sources */,
+				BFCD71EB2BA8446D001F5D8B /* ClubInfoView.swift in Sources */,
+				BFCD71E92BA8444B001F5D8B /* ProfilView.swift in Sources */,
+				BFCD71ED2BA846DC001F5D8B /* SideMenuView.swift in Sources */,
 				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
 				BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */,
 				BF772ECB2BA44A46008C901A /* SkillLevel.swift in Sources */,
@@ -323,6 +379,7 @@
 				BF98358B2BA07D5600F84785 /* MainTabView.swift in Sources */,
 				BF9835582B9F572100F84785 /* BRCApp.swift in Sources */,
 				BF9835692B9F587C00F84785 /* Rower.swift in Sources */,
+				BFCD71E72BA84435001F5D8B /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
