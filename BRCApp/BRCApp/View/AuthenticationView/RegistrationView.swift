@@ -24,7 +24,10 @@ struct RegistrationView: View {
                     TextField("E-Mail Adresse", text: $authViewModel.emailAdress)
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     SecureField("Passwort", text: $authViewModel.password)
+                        .foregroundStyle(.blue)
                     SecureField("Passwort bestätigen", text: $authViewModel.correctPassword)
+                        .foregroundStyle(.blue)
+                    
                 }
                 
                 Section(header: Text("Persönliche Rudereigenschaften")) {

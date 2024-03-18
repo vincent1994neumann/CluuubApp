@@ -7,45 +7,30 @@
 
 import SwiftUI
 
+
 struct SideMenuView: View {
-    
-    @EnvironmentObject var authViewModel: AuthenticationViewModel
-    var menuItems: [SideMenuItem] = []
-    
-    init(authViewModel: AuthenticationViewModel) {
-        // Menüelemente erstellen und Aktionen definieren
-        menuItems = [
-            SideMenuItem(id: UUID(), text: "Profil", icon: "person", action: {
-                // Navigiere zum Profil
-                NavigationLink(<#LocalizedStringKey#>, destination: ProfilView())
-                print("Profil ausgewählt")
-            }),
-            SideMenuItem(id: UUID(), text: "Einstellungen", icon: "gear", action: {
-                // Navigiere zu den Einstellungen
-                print("Einstellungen ausgewählt")
-            }),
-            SideMenuItem(id: UUID(), text: "Übern Club", icon: "gear", action: {
-                // Navigiere zu den Einstellungen
-                print("Club Info Page")
-            }),
-            SideMenuItem(id: UUID(), text: "Abmelden", icon: "arrow.right.square", action: {
-                // Führe Abmeldeprozess durch
-                authViewModel.logout()
-            })
-        ]
-    }
+    @Binding var isShowing: Bool
     
     
+    var menuItems = [
+        SideMenuItem(sideMenuTabName: "Profil", imageSystemName: "person", destination: AnyView(ProfilView())),
+        SideMenuItem(sideMenuTabName: "Einstellungen", imageSystemName: "gear", destination: AnyView(SettingsView())),
+        SideMenuItem(sideMenuTabName: "Übern Club", imageSystemName: "star.fill", destination: AnyView(ClubInfoView()))
+    ]
     
     
     var body: some View {
-        NavigationStack{
-            VStack{
-                List{
-                    ForEach(menuItems){ item in
+        
+        VStack{
+            Image("BRC_Logo")
+                .resizable()
+                .scaledToFit()
+            List{
+                ForEach(menuItems){ item in
+                    NavigationLink(destination: item.destination){
                         HStack{
-                            Image(systemName: item.icon)
-                            Text(item.text)
+                            Image(systemName: item.imageSystemName)
+                            Text(item.sideMenuTabName)
                         }
                     }
                 }
@@ -53,8 +38,11 @@ struct SideMenuView: View {
         }
     }
 }
-    
-    #Preview {
-        SideMenuView(authViewModel: AuthenticationViewModel())
+
+#Preview {
+    NavigationStack{
+        SideMenuView(isShowing: .constant(true))
     }
+    
+}
 

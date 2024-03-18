@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+
 
 struct SideMenuItem: Identifiable{
-    let id: UUID
-    let text : String
-    let icon: String
-    let action : () -> Void 
+    let id = UUID()
+    let sideMenuTabName : String
+    let imageSystemName: String
+    let destination : AnyView
 }

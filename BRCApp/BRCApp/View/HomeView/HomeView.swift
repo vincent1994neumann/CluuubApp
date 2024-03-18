@@ -12,49 +12,71 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     @Binding var selectedTab: Tabs
     @State private var isShowingSideMenu = false
-  
+    
     
     
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationStack{
-            VStack{
-                Image("BRC_Logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+            ZStack{
+                VStack{
+                    Image("BRC_Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    
+                    GeometryReader { geometry in
+                        TabView(selection: $viewModel.currentIndex) {
+                            ForEach(0..<viewModel.images.count, id: \.self) { index in
+                                Image(viewModel.images[index].name)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geometry.size.width, height: 180)
+                                    .clipped()
+                                    .tag(index)
+                            }
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
+                        .frame(width: geometry.size.width, height: 180)
+                    }
+                }.toolbar{
+                    ToolbarItem(placement: .topBarLeading){
+                        Button(action:{
+                            withAnimation(.smooth){
+                                isShowingSideMenu.toggle()
+                            }
+                        }){
+                            Image(systemName: "list.bullet")
+                        }
+                    }
+                }
+                .offset(x: isShowingSideMenu ? UIScreen.main.bounds.width * 0.6 : 0)
+                .onTapGesture {
+                    withAnimation(.smooth){
+                        isShowingSideMenu = false
+                    }
+                }
                 
-                GeometryReader { geometry in
-                    TabView(selection: $viewModel.currentIndex) {
-                        ForEach(0..<viewModel.images.count, id: \.self) { index in
-                            Image(viewModel.images[index].name)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: geometry.size.width, height: 180)
-                                .clipped()
-                                .tag(index)
-                        }
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
-                    .frame(width: geometry.size.width, height: 180)
-                }
-            }.toolbar{
-                ToolbarItem(placement: .topBarLeading){
-                    Button(action:{
-                        withAnimation{
-                            isShowingSideMenu.toggle()
-                        }
-                    }){
-                        Image(systemName: "list.bullet")
+                HStack{
+                    if isShowingSideMenu{
+                        SideMenuView(isShowing: $isShowingSideMenu)
+                            .frame(width: UIScreen.main.bounds.width * 0.6)
+                            .transition(.move(edge: .leading))
+                        Spacer()
                     }
                 }
-            }.sheet(isPresented: $isShowingSideMenu, content: {
-               
-            })
+            }
         }
     }
+     
 }
+
+
+
+
+
+
 #Preview {
     HomeView(viewModel: HomeViewModel(), selectedTab: .constant(.homeView))
 }

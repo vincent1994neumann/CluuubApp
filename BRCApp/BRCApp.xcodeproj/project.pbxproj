@@ -238,7 +238,7 @@
 				BF772EC72BA449E6008C901A /* User */,
 				BF772EC82BA449F6008C901A /* LetsGoRowing */,
 				BF772EC92BA44A10008C901A /* ImageGallery */,
-				BF772EDD2BA5E94C008C901A /* SideMenuItem.swift */,
+				BFCD71EE2BA8672E001F5D8B /* HamburgerMenu */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +266,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFCD71EE2BA8672E001F5D8B /* HamburgerMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EDD2BA5E94C008C901A /* SideMenuItem.swift */,
+			);
+			name = HamburgerMenu;
+			path = "HamburgerMenü";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
