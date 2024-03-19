@@ -151,9 +151,9 @@
 		BF772ED32BA5BD17008C901A /* LetsGoRowingView */ = {
 			isa = PBXGroup;
 			children = (
-				BF772ED42BA5BD39008C901A /* LetsGoRowingRequestView */,
 				BF772EB52BA21239008C901A /* LetsGoRowingView.swift */,
 				BF772ED12BA5BD13008C901A /* LetsGoRowingViewModel.swift */,
+				BF772ED42BA5BD39008C901A /* LetsGoRowingRequestView */,
 			);
 			path = LetsGoRowingView;
 			sourceTree = "<group>";

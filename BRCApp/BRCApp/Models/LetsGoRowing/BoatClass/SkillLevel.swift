@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum SkillLevel: String, Codable{
+enum SkillLevel: String, CaseIterable, Codable{
+    var id: String{self.rawValue}
     case beginner = "Anfänger"
-    case intermediate = "Fortgeschritten"
-    case advanced = "Weit Forgeschritten"
+    case advanced = "Fortgeschritten"
     case competitive = "Wettkampf"
     case extrem = "Leistungssport"
 }

@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum BoatType: String, Codable {
+enum BoatType: String, CaseIterable, Codable {
+    var id: String{self.rawValue}
+    
     case double = "Zweier"
     case coxedDouble = "Zweier mit Steuermann"
     case quad = "Vierer"

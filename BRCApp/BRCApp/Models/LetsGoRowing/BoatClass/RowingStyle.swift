@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum RowingStyle : String, Codable{
+enum RowingStyle : String, CaseIterable, Codable{
+    var id: String{self.rawValue}
     case skull = "Skull"
     case riemen = "Riemen"
+    
 }

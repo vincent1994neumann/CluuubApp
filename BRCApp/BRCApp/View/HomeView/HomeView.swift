@@ -24,7 +24,7 @@ struct HomeView: View {
                     Image("BRC_Logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                        .frame(width: 100)
                     
                     GeometryReader { geometry in
                         TabView(selection: $viewModel.currentIndex) {
@@ -40,6 +40,8 @@ struct HomeView: View {
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
                         .frame(width: geometry.size.width, height: 180)
                     }
+                    
+                    Spacer()
                 }.toolbar{
                     ToolbarItem(placement: .topBarLeading){
                         Button(action:{
@@ -66,16 +68,10 @@ struct HomeView: View {
                         Spacer()
                     }
                 }
-            }
-        }
+            }        }
     }
      
 }
-
-
-
-
-
 
 #Preview {
     HomeView(viewModel: HomeViewModel(), selectedTab: .constant(.homeView))
