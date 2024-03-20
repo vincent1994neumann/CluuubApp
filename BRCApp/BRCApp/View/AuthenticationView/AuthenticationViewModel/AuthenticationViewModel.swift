@@ -85,7 +85,7 @@ class AuthenticationViewModel : ObservableObject{
     
     
     
-    private func fetchFireUser(withId id : String){
+    func fetchFireUser(withId id : String){
         FirebaseManager.shared.fireStore.collection("user").document(id).getDocument{document, error in
             if let error {
                 print("Error beim Abrufen des Users \(id): \(error)")

@@ -23,6 +23,7 @@ struct LetsGoRowingView: View {
             }.toolbar {
                 ToolbarItem(placement: .topBarTrailing){
                     Button("Add Request", systemImage: "plus"){
+                       
                         showingAddRequestSheet = true
                     }.sheet(isPresented: $showingAddRequestSheet){
                         LetsGoRowingRequestView()

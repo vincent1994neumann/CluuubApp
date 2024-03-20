@@ -25,9 +25,7 @@ class HomeViewModel: ObservableObject, Identifiable{
     init(){
         startTimer()
     }
-    deinit{
-        print("HomeViewModel deinitialist")
-    }
+    
     
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { [weak self] _ in

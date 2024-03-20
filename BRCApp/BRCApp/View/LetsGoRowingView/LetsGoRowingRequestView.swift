@@ -9,31 +9,35 @@ import SwiftUI
 
 struct LetsGoRowingRequestView: View {
     
-    @State private var selectedBoatType = BoatType.double
-    @State private var selectedRowingStyle = RowingStyle.skull
-    @State private var skillLevel = SkillLevel.beginner
-    @State private var rowingDate = Date()
-    @State private var distance = 10.0
-    @State private var rowers: [String] = []
-    @State private var notes = ""
-    
-    
+    @StateObject var LGRViewModel = LetsGoRowingViewModel()
+    @State var distance = 10.0
     var body: some View {
         VStack{
+            
+            
             Form{
+                
+                Section(header: Text("Captain")){
+                    HStack{
+                        Text(LGRViewModel.publishedBy?.name ?? "error Username")
+                        Text(LGRViewModel.publishedBy?.lastName ?? "error Userlastname")
+                        Text(LGRViewModel.publishedBy?.age ?? "error Userlastage")
+                    }
+                }
+                
                 Section(header: Text("Ruderanfrage")){
                     
-                    Picker("Ruderstil", selection: $selectedRowingStyle){
+                    Picker("Ruderstil", selection: $LGRViewModel.selectedRowingStyle){
                         ForEach(RowingStyle.allCases, id: \.self){ style in
                             Text(style.rawValue)
                         }
                     }
-                    Picker("Bootsklasse", selection: $selectedBoatType){
+                    Picker("Bootsklasse", selection: $LGRViewModel.selectedBoatType){
                         ForEach(BoatType.allCases, id: \.self){ boat in
                             Text(boat.rawValue)
                         }
                     }
-                    Picker("Ruderkompetenz", selection: $skillLevel){
+                    Picker("Ruderkompetenz", selection: $LGRViewModel.skillLevel){
                         ForEach(SkillLevel.allCases, id: \.self){ skill in
                             Text(skill.rawValue)
                         }
@@ -41,23 +45,32 @@ struct LetsGoRowingRequestView: View {
                 }
                 
                 Section(header: Text("Rudertermin")){
-                    DatePicker("Rudertermin", selection: $rowingDate)
+                    DatePicker("Rudertermin", selection: $LGRViewModel.rowingDate)
                     
                     HStack{
-                        Slider(value: $distance, in: 0.0...30.0)
+                        Slider(value: $LGRViewModel.distance, in: 0.0...30.0)
                         Text(distance, format: .number.precision(.fractionLength(1)))
                         Text("km")
                     }
                 }
                 
                 Section(header: Text("free Seats")){
-                    ForEach(0..<selectedBoatType.rowerList, id:  \.self){ index in
+                    HStack{
+                        Spacer()
+                        Button("Im Boot platznehmen"){
+                            LGRViewModel.addPublisherToRowerList()
+                            
+                        }
+                        Spacer()
+                    }
+                   
+                    ForEach(0..<LGRViewModel.selectedBoatType.rowerList, id:  \.self){ index in
                         Text("Seat \(index + 1)")
                     }
                 }
                 
                 Section(header: Text("Sonstige Informationen")){
-                    TextEditor(text: $notes)
+                    TextEditor(text: $LGRViewModel.notes)
                         .frame(height: 100)
                 }
                 
