@@ -15,19 +15,19 @@ enum BoatType: String, CaseIterable, Codable {
     case quad = "Vierer"
     case coxedQuad = "Vierer mit Steuermann"
     case eight = "Achter mit Steuermann"
- 
-    var rowerList: Int {
+    
+    var numberOfSeats: Int {
         switch self {
         case .double:
-            2
+            return 2
         case .coxedDouble:
-            3
+            return 3
         case .quad:
-            4
+            return 4
         case .coxedQuad:
-            5
+            return 5
         case .eight:
-            9
+            return 9
         }
     }
 }

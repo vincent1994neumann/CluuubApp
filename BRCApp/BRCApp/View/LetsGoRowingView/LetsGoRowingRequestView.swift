@@ -54,18 +54,28 @@ struct LetsGoRowingRequestView: View {
                     }
                 }
                 
-                Section(header: Text("free Seats")){
+                Section(header: Text("Liste von Ruderern")){
                     HStack{
                         Spacer()
-                        Button("Im Boot platznehmen"){
-                            LGRViewModel.addPublisherToRowerList()
-                            
+                        Button(LGRViewModel.isPublisherInBoat ? "Aus Boot entfernen" : "Mich zum Boot hinzufügen") {
+                            LGRViewModel.togglePublisherInRowerList()
                         }
+
                         Spacer()
                     }
-                   
-                    ForEach(0..<LGRViewModel.selectedBoatType.rowerList, id:  \.self){ index in
-                        Text("Seat \(index + 1)")
+                    
+                    ForEach(0..<LGRViewModel.selectedBoatType.numberOfSeats, id: \.self) { index in
+                        if index < LGRViewModel.rowerList.count, let rower = LGRViewModel.rowerList[index] {
+                            HStack{
+                                Text(rower.name)
+                                Text(rower.lastName)
+                                
+                            }
+                        } else {
+                            Text("Freier Sitz")
+                                .italic()
+                                .font(.footnote)
+                        }
                     }
                 }
                 
@@ -85,6 +95,7 @@ struct LetsGoRowingRequestView: View {
     }
 }
 
-#Preview {
-    LetsGoRowingRequestView()
-}
+
+//#Preview {
+//    LetsGoRowingRequestView()
+//}
