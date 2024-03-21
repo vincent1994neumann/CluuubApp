@@ -9,11 +9,11 @@ import Foundation
 
 struct LetsGoRowingRequest : Codable, Identifiable {
     let id : UUID
-    let publishedBy : Rower
-    var boatClass : BoatClass
+    let publishedBy : Rower?
+    var boatType : BoatType
+    var rowingStyle : RowingStyle
     var publishedDate = Date()
     var rowingDate : Date
-    let totalSeats : Int
     var availableSeats : Int 
     var rowerList : [Rower]?
     var requestClosed : Bool

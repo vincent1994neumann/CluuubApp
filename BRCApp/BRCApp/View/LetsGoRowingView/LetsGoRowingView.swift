@@ -15,8 +15,9 @@ struct LetsGoRowingView: View {
     var body: some View {
         NavigationStack{
             VStack{
+                Text("offene Boote")
                 
-                
+                Text("geschlossene Boote")
                 
                 
                 

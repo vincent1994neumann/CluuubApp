@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct Rower: Codable{
+ struct Rower: Codable, Identifiable{
     let id : String
     let name : String
     let lastName : String
@@ -21,4 +21,8 @@ import Foundation
     var trailerDrivingLicence : Bool
     var admin :Bool
      //var skillLevel : SkillLevel
+     
+     var fullName: String {
+            "\(name) \(lastName)"
+        }
 }

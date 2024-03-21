@@ -45,6 +45,7 @@
 		BFCD71E92BA8444B001F5D8B /* ProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71E82BA8444B001F5D8B /* ProfilView.swift */; };
 		BFCD71EB2BA8446D001F5D8B /* ClubInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */; };
 		BFCD71ED2BA846DC001F5D8B /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71EC2BA846DC001F5D8B /* SideMenuView.swift */; };
+		BFCD71F22BACE58A001F5D8B /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD71F12BACE58A001F5D8B /* RequestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		BFCD71E82BA8444B001F5D8B /* ProfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilView.swift; sourceTree = "<group>"; };
 		BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoView.swift; sourceTree = "<group>"; };
 		BFCD71EC2BA846DC001F5D8B /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		BFCD71F12BACE58A001F5D8B /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				BF772EB52BA21239008C901A /* LetsGoRowingView.swift */,
 				BF772ED52BA5BD56008C901A /* LetsGoRowingRequestView.swift */,
+				BFCD71F12BACE58A001F5D8B /* RequestView.swift */,
 				BF772ED42BA5BD39008C901A /* LetsGoRowingViewModel */,
 			);
 			path = LetsGoRowingView;
@@ -373,6 +376,7 @@
 				BF98356E2B9F5B4500F84785 /* AuthenticationViewModel.swift in Sources */,
 				BFCD71EB2BA8446D001F5D8B /* ClubInfoView.swift in Sources */,
 				BFCD71E92BA8444B001F5D8B /* ProfilView.swift in Sources */,
+				BFCD71F22BACE58A001F5D8B /* RequestView.swift in Sources */,
 				BFCD71ED2BA846DC001F5D8B /* SideMenuView.swift in Sources */,
 				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
 				BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */,

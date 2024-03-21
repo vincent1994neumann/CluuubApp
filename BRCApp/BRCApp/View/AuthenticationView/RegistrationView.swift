@@ -27,9 +27,7 @@ struct RegistrationView: View {
                         .foregroundStyle(.blue)
                     SecureField("Passwort bestätigen", text: $authViewModel.correctPassword)
                         .foregroundStyle(.blue)
-                    
                 }
-                
                 Section(header: Text("Persönliche Rudereigenschaften")) {
                     Toggle("Skull", isOn: $authViewModel.skull)
                     Toggle("Riemen", isOn: $authViewModel.riemen)
@@ -38,7 +36,6 @@ struct RegistrationView: View {
                     Toggle("Steuerbord", isOn: $authViewModel.sb)
                         .disabled(!authViewModel.riemen)
                 }
-                
                 Section(header: Text("Sonstige Eigentschaften")){
                     Toggle("Hängerfahrer", isOn: $authViewModel.trailerDrivingLicence)
                 }
