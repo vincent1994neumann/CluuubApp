@@ -72,9 +72,12 @@ struct LetsGoRowingRequestView: View {
                                 
                             }
                         } else {
-                            Text("Freier Sitz")
-                                .italic()
-                                .font(.footnote)
+                            HStack{
+                                Text("Freier Sitz")
+                                    .italic()
+                                    .font(.footnote)
+                            }
+                               
                         }
                     }
                 }
