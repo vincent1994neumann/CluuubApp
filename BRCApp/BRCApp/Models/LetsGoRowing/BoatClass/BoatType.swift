@@ -30,4 +30,19 @@ enum BoatType: String, CaseIterable, Codable {
             return 9
         }
     }
+    
+    var imageName: String {
+         switch self {
+         case .double:
+             return "double_boat_image"
+         case .coxedDouble:
+             return "coxed_double_boat_image"
+         case .quad:
+             return "quad_boat_image"
+         case .coxedQuad:
+             return "coxed_quad_boat_image"
+         case .eight:
+             return "eight_boat_image"
+         }
+     }
 }

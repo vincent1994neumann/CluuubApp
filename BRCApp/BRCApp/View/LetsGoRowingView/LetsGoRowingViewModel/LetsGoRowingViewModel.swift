@@ -71,10 +71,6 @@ class LetsGoRowingViewModel: ObservableObject{
     
     
     func saveRowerRequest() {
-//        guard let captainId = publishedBy?.id else {
-//            print("Captain not defined")
-//            return
-//        }
         
         let rowerRequest = LetsGoRowingRequest(id: UUID(), publishedBy: self.publishedBy, boatType: self.selectedBoatType, rowingStyle: self.selectedRowingStyle, rowingDate: self.rowingDate, availableSeats: self.availableSeats, requestClosed: self.requestClosed, skillLevel: self.skillLevel)
         
@@ -90,6 +86,21 @@ class LetsGoRowingViewModel: ObservableObject{
             print("Error encoding request: \(error)")
         }
     }
+    
+    func fetchAllRequests() {
+        FirebaseManager.shared.fireStore.collection("rowerRequests").getDocuments { [weak self] (querySnapshot, error) in
+            if let error = error {
+                print("Error getting requests: \(error.localizedDescription)")
+            } else if let querySnapshot = querySnapshot {
+                DispatchQueue.main.async {
+                    self?.listOfRequest = querySnapshot.documents.compactMap { document in
+                        try? document.data(as: LetsGoRowingRequest.self)
+                    }
+                }
+            }
+        }
+    }
+
 
     
     
@@ -121,13 +132,13 @@ class LetsGoRowingViewModel: ObservableObject{
     
     
     func updateAvailableSeats() {
-        let totalSeats = selectedBoatType.numberOfSeats // Zugriff auf die numberOfSeats Eigenschaft des Enums.
+        let totalSeats = selectedBoatType.numberOfSeats
         let occupiedSeats = rowerList.compactMap { $0 }.count // Zählt nur nicht-nil Ruderer
-        self.availableSeats = totalSeats - occupiedSeats // Aktualisiert das @Published Property
+        self.availableSeats = totalSeats - occupiedSeats
     }
     
     func fetchAllUsers() {
-        FirebaseManager.shared.fireStore.collection("user") // Stellen Sie sicher, dass "users" der richtige Pfad ist
+        FirebaseManager.shared.fireStore.collection("user")
             .getDocuments { [weak self] (querySnapshot, error) in
                 if let error = error {
                     print("Error getting user: \(error)")
@@ -167,6 +178,8 @@ class LetsGoRowingViewModel: ObservableObject{
     func updateRequestClosedStatus() {
         // `requestClosed` wird auf `true` gesetzt, wenn keine verfügbaren Sitze mehr vorhanden sind
         requestClosed = availableSeats == 0
+    
+        print("\(requestClosed) Test")
     }
     
     

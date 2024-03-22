@@ -8,34 +8,78 @@
 import SwiftUI
 
 struct LetsGoRowingView: View {
+    
+    @StateObject var LGRviewModel = LetsGoRowingViewModel()
+    
     @Binding var selectedTab: Tabs
-    @Environment(\.dismiss) private var dismiss
+    
     @State var showingAddRequestSheet = false
+    
+    @State private var mainFilterOption: MainFilterOptions = .open
+    @State private var subFilterOption: SubFilterOptions = .all
+    
+    var filteredRequests: [LetsGoRowingRequest] {
+        LGRviewModel.listOfRequest.filter{ request in
+            (mainFilterOption == .open && !request.requestClosed) ||
+            (mainFilterOption == .closed && request.requestClosed)
+        }.filter{ request in
+            switch subFilterOption {
+            case .all:
+                return true
+            case .skull:
+                return request.rowingStyle == .skull
+            case .riemen:
+                return request.rowingStyle == .riemen
+            }
+            
+        }
+    }
     
     var body: some View {
         NavigationStack{
             VStack{
-                Text("offene Boote")
                 
-                Text("geschlossene Boote")
-                
-                
-                
-            }.toolbar {
-                ToolbarItem(placement: .topBarTrailing){
-                    Button("Add Request", systemImage: "plus"){
-                       
-                        showingAddRequestSheet = true
-                    }.sheet(isPresented: $showingAddRequestSheet){
-                        LetsGoRowingRequestView()
+                Picker("Hauptfilter", selection: $mainFilterOption){
+                    ForEach(MainFilterOptions.allCases, id: \.self) { option in
+                        Text(option.rawValue).tag(option)
                     }
                 }
-            }.navigationTitle("Let's Go Rowing")
+                .pickerStyle(SegmentedPickerStyle())
+                
+                if mainFilterOption == .open {
+                    Picker("Subfilter", selection: $subFilterOption){
+                        ForEach(SubFilterOptions.allCases, id: \.self){ option in
+                            Text(option.rawValue).tag(option)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                    
+                }
+            }.padding(.leading, 8)
+             .padding(.trailing, 8)
+            
+            ScrollView{
+                
+                ForEach(filteredRequests) { request in
+                    RequestView(request: request)
+                    
+                }.toolbar {
+                    ToolbarItem(placement: .topBarTrailing){
+                        Button("Add Request", systemImage: "plus"){
+                            
+                            showingAddRequestSheet = true
+                        }.sheet(isPresented: $showingAddRequestSheet){
+                            LetsGoRowingRequestView()
+                        }
+                    }
+                }.navigationTitle("Let's Go Rowing")
+            } .onAppear {
+                LGRviewModel.fetchAllRequests()
+            }
         }
     }
 }
 
 
-#Preview {
-    LetsGoRowingView(selectedTab: .constant(.letsGoRowingView))
-}
+//#Preview {
+//    LetsGoRowingView(selectedTab: .constant(.letsGoRowingView))
+//}
