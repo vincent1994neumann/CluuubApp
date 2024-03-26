@@ -15,7 +15,7 @@ struct LetsGoRowingRequest : Codable, Identifiable {
     var publishedDate = Date()
     var rowingDate : Date
     var availableSeats : Int 
-    var rowerList : [Rower]?
+    var rowerList : [Rower]
     var requestClosed : Bool
     var skillLevel : SkillLevel
     var duration : TimeInterval?

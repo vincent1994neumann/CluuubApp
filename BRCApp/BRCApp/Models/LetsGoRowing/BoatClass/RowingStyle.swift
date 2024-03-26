@@ -16,7 +16,7 @@ enum RowingStyle : String, CaseIterable, Codable{
     var strokeColor : Color {
         switch self{
         case.riemen:
-            return Color.orange
+            return Color.red
         case.skull:
             return Color.yellow
             

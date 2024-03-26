@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LetsGoRowingRequestView: View {
     
-    @StateObject var LGRViewModel = LetsGoRowingViewModel()
+    @ObservedObject var LGRViewModel : LetsGoRowingViewModel
     @State var distance = 10.0
     @State private var selectedRowerId: String? = nil
     
@@ -65,6 +65,13 @@ struct LetsGoRowingRequestView: View {
                     }
                     
                     Section(header: Text("Liste von Ruderern")) {
+                        HStack{
+                                               Spacer()
+                                               Button(LGRViewModel.isPublisherInBoat ? "Mich aus Boot entfernen" : "Mich zum Boot hinzufügen") {
+                                                   LGRViewModel.togglePublisherInRowerList()
+                                               }
+                                               Spacer()
+                                           }
                         TextField("Ruderer manuell platzieren", text: $searchText)
                             .onChange(of: searchText) { newValue in
                                 LGRViewModel.filterUsers(with: newValue)
@@ -89,19 +96,18 @@ struct LetsGoRowingRequestView: View {
                         }
                         
                         ForEach(0..<LGRViewModel.selectedBoatType.numberOfSeats, id: \.self) { index in
-                            if index < LGRViewModel.rowerList.filter({ $0 != nil }).count {
+                            if index < LGRViewModel.rowerList.count {
                                 // Zeige vorhandene Ruderer
-                                if let rower = LGRViewModel.rowerList[index] {
-                                    HStack {
-                                        Text(rower.name)
-                                        Text(rower.lastName)
-                                        Spacer()
-                                        Button("Entfernen") {
-                                            LGRViewModel.removeRowerFromRowerList(rower: rower)
-                                        }
+                                let rower = LGRViewModel.rowerList[index]
+                                HStack {
+                                    Text(rower.name)
+                                    Text(rower.lastName)
+                                    Spacer()
+                                    Button("Entfernen") {
+                                        LGRViewModel.removeRowerFromRowerList(rower: rower)
                                     }
                                 }
-                            } else {
+                            }  else {
                                 // Zeige "Freier Sitz" und Hinzufügen-Button
                                 HStack {
                                     Spacer()
@@ -127,11 +133,14 @@ struct LetsGoRowingRequestView: View {
                     
                     HStack{
                         Spacer()
+                      
                         Button("Anfrage veröffentlichen"){
+                        
                             showPublishConfirmationAlert = true
                         }
                         Spacer()
-                    }.alert(isPresented: $showPublishConfirmationAlert) {
+                    } .disabled(LGRViewModel.rowerList.isEmpty)
+                    .alert(isPresented: $showPublishConfirmationAlert) {
                         Alert(
                             title: Text("Anfrage veröffentlichen"),
                             message: Text("Möchten Sie die Anfrage wirklich veröffentlichen?"),
@@ -160,7 +169,7 @@ struct LetsGoRowingRequestView: View {
 
 
 #Preview {
-    LetsGoRowingRequestView()
+    LetsGoRowingRequestView(LGRViewModel: LetsGoRowingViewModel())
 }
 
 

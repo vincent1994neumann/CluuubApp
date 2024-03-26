@@ -20,6 +20,7 @@ import Foundation
     let sb : Bool
     var trailerDrivingLicence : Bool
     var admin :Bool
+   // var createdRequest: [LetsGoRowingRequest] = []
      //var skillLevel : SkillLevel
      
      var fullName: String {

@@ -32,7 +32,7 @@ struct LetsGoRowingView: View {
                 return request.rowingStyle == .riemen
             }
             
-        }
+        }.sorted{ $0.rowingDate < $1.rowingDate}
     }
     
     var body: some View {
@@ -60,7 +60,7 @@ struct LetsGoRowingView: View {
             ScrollView{
                 
                 ForEach(filteredRequests) { request in
-                    RequestView(request: request)
+                    RequestView(request: request, LGRViewModel: LGRviewModel)
                     
                 }.toolbar {
                     ToolbarItem(placement: .topBarTrailing){
@@ -68,7 +68,7 @@ struct LetsGoRowingView: View {
                             
                             showingAddRequestSheet = true
                         }.sheet(isPresented: $showingAddRequestSheet){
-                            LetsGoRowingRequestView()
+                            LetsGoRowingRequestView(LGRViewModel: LGRviewModel)
                         }
                     }
                 }.navigationTitle("Let's Go Rowing")

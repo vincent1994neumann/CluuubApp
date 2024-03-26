@@ -29,7 +29,7 @@ struct BRCApp: App {
                 MainTabView()
             } else{
                 AuthenticationView()
-                  .preferredColorScheme(.dark) // Light oder Darkmodus erzwingen
+                  .preferredColorScheme(.light) // Light oder Darkmodus erzwingen
                 }
         } .environmentObject(authViewModel)
             

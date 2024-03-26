@@ -9,10 +9,11 @@ import SwiftUI
 
 struct RequestView: View {
     var request: LetsGoRowingRequest
+    @ObservedObject var LGRViewModel : LetsGoRowingViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            
+           
             HStack{
                 Spacer()
                 Text("\(request.rowingDate, formatter: itemFormatter)")
@@ -65,6 +66,23 @@ struct RequestView: View {
                     .font(.subheadline)
                     .bold()
                 Spacer()
+                
+                if !request.requestClosed{
+                    HStack{
+                        Button("Platz einnehmen"){
+                            LGRViewModel.joinOpenRequest(requestId: self.request.id)
+                            LGRViewModel.saveUpdatedRequest(self.request, withId: request.id)
+                            // Logik zum hinzufügen des aktuellen Users im ViewModel schreiben
+                            // Design des Btn anpassen, ggf mit image
+                            // Update der avaialableseats neu kalkulieren
+                            // Togglefunktion zum entfernen auf dem Boot
+                        }.alert(isPresented: $LGRViewModel.showAlert) {
+                            Alert(title: Text("Hinweis"), message: Text(LGRViewModel.alertMessage), dismissButton: .default(Text("OK")))
+                        }
+                    }
+                }else{
+                    
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
@@ -79,6 +97,8 @@ struct RequestView: View {
         .shadow(radius: 5)
         .frame(maxWidth: .infinity)
         .padding(.all,8)
+        
+       
     }
     
     private var itemFormatter: DateFormatter {
