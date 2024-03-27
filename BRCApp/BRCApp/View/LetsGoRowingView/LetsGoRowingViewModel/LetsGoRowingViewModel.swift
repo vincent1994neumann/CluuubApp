@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class LetsGoRowingViewModel: ObservableObject{
     
@@ -45,11 +46,25 @@ class LetsGoRowingViewModel: ObservableObject{
     }
     
     
+    
+    
+    
     init(){
         fetchCurrentUserDetails()
         fetchAllUsers()
-        updateAvailableSeats()
+       updateAvailableSeats()
     }
+    
+    func isRowerInBoat(for requestId: String) -> Bool {
+        guard let currentUserId = currentUser?.id,
+              let request = listOfRequest.first(where: { $0.id == requestId }) else {
+            return false
+        }
+        
+        return request.rowerList.contains(where: { $0.id == currentUserId })
+    }
+
+
     
     func fetchCurrentUserDetails() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
@@ -63,6 +78,7 @@ class LetsGoRowingViewModel: ObservableObject{
             if let document = document, document.exists, let user = try? document.data(as: Rower.self) {
                 DispatchQueue.main.async {
                     self.publishedBy = user
+                    self.currentUser = user
                 }
             } else if let error = error {
                 print("Error fetching user details: \(error)")
@@ -72,8 +88,6 @@ class LetsGoRowingViewModel: ObservableObject{
     
     func rowerListInit(){
         guard !rowerList.isEmpty else {
-                alertMessage = "Es muss mindestens ein Ruderer hinzugefügt werden."
-                showAlert = true
                 print("Es muss mindestens ein Ruderer hinzugefügt werden.")
                 return
             }
@@ -83,7 +97,7 @@ class LetsGoRowingViewModel: ObservableObject{
         //Sonst gibt es Probleme mit der Init des Requests - rowerListe !
         rowerListInit()
         //RowerList übergeben
-        let rowerRequest = LetsGoRowingRequest(id: UUID(), publishedBy: self.publishedBy, boatType: self.selectedBoatType, rowingStyle: self.selectedRowingStyle, rowingDate: self.rowingDate, availableSeats: self.availableSeats, rowerList: self.rowerList, requestClosed: self.requestClosed, skillLevel: self.skillLevel)
+        let rowerRequest = LetsGoRowingRequest(publishedBy: self.publishedBy, boatType: self.selectedBoatType, rowingStyle: self.selectedRowingStyle, rowingDate: self.rowingDate, availableSeats: self.availableSeats, rowerList: self.rowerList, requestClosed: self.requestClosed, skillLevel: self.skillLevel)
         
         do {
             let _ = try FirebaseManager.shared.fireStore.collection("rowerRequests").addDocument(from: rowerRequest) { error in
@@ -98,14 +112,89 @@ class LetsGoRowingViewModel: ObservableObject{
         } catch let error {
             print("Error encoding request: \(error)")
         }
+        print("saveRowerRequest 1")
     }
+  
+
     
+    func saveUpdatedRequest(_ request: LetsGoRowingRequest, withId id: String) {
+        do {
+            try FirebaseManager.shared.fireStore.collection("rowerRequests")
+                .document(id)
+                .setData(from: request, merge: true) { error in // Füge `merge: true` hinzu, um vorhandene Daten zu aktualisieren
+                    if let error = error {
+                        print("Fehler beim Aktualisieren der Anfrage: \(error.localizedDescription)")
+                    } else {
+                        print("Anfrage erfolgreich aktualisiert.")
+                    }
+                }
+        } catch let error {
+            print("Error encoding request: \(error)")
+        }
+    }
+
+    
+    func toggleRowerInRequest(requestId: String) {
+        // Suche den Index der Anfrage mit der gegebenen ID.
+        guard let index = listOfRequest.firstIndex(where: { $0.id == requestId }) else {
+            print("Anfrage mit der ID \(requestId) nicht gefunden.")
+            return
+        }
+        
+        // Hole die Benutzer-ID des aktuellen Firebase User
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+            print("Kein Benutzer angemeldet")
+            return
+        }
+        
+        // Hole das Rower-Objekt aus der Datenbank
+        FirebaseManager.shared.fireStore.collection("user").document(uid).getDocument { [weak self] (documentSnapshot, error) in
+            guard let self = self else { return }
+            if let error = error {
+                print("Fehler beim Abrufen der Benutzerdaten: \(error)")
+                return
+            }
+            
+            guard let documentSnapshot = documentSnapshot, let rower = try? documentSnapshot.data(as: Rower.self) else {
+                print("Benutzerdaten konnten nicht abgerufen werden.")
+                return
+            }
+            
+            // Führe die Updates im Hauptthread aus
+            DispatchQueue.main.async {
+                
+                // Zugriff auf die Anfrage direkt über den Index für direkte Manipulation
+                var request = self.listOfRequest[index]
+                
+                // Überprüfe, ob der Benutzer bereits in der rowerList ist
+                if let rowIndex = request.rowerList.firstIndex(where: { $0.id == rower.id }) {
+                    // Benutzer ist bereits in der Liste, entferne ihn
+                    request.rowerList.remove(at: rowIndex)
+                    request.availableSeats += 1
+                } else {
+                    // Benutzer ist nicht in der Liste, füge ihn hinzu
+                    request.rowerList.append(rower)
+                    request.availableSeats -= 1
+                }
+                
+                // Aktualisiere den Status der Anfrage
+                request.requestClosed = request.availableSeats <= 0
+                
+                // Speichere die aktualisierte Anfrage in Firestore und aktualisiere die lokale Liste
+                self.saveUpdatedRequest(request, withId: request.id ?? "Error ID")
+                // Da `request` eine Kopie ist, aktualisiere das Original in `listOfRequest`
+                self.listOfRequest[index] = request
+            }
+        }
+    }
+
     func fetchAllRequests() {
         FirebaseManager.shared.fireStore.collection("rowerRequests").getDocuments { [weak self] (querySnapshot, error) in
             if let error = error {
                 print("Error getting requests: \(error.localizedDescription)")
             } else if let querySnapshot = querySnapshot {
                 DispatchQueue.main.async {
+                    self?.listOfRequest.removeAll() // Um eine Dopplung zu vermeiden?
                     self?.listOfRequest = querySnapshot.documents.compactMap { document in
                         try? document.data(as: LetsGoRowingRequest.self)
                         
@@ -117,6 +206,7 @@ class LetsGoRowingViewModel: ObservableObject{
         }
       //  print(listOfRequest)
     }
+
     
     func updateAvailableSeats() {
         let totalSeats = selectedBoatType.numberOfSeats
@@ -144,15 +234,11 @@ class LetsGoRowingViewModel: ObservableObject{
         
         if !rowerList.contains(where: { $0.id == rower.id }) {
             rowerList.append(rower)
-            updateAvailableSeats()
-            updateRequestClosedStatus()
         }
     }
     
     func removeRowerFromRowerList(rower: Rower) {
         rowerList.removeAll { $0.id == rower.id }
-        updateAvailableSeats()
-        updateRequestClosedStatus()
     }
     
     func filterUsers(with searchText: String) {
@@ -163,77 +249,13 @@ class LetsGoRowingViewModel: ObservableObject{
         }
     }
     
-    func updateRequestClosedStatus() {
+    func updateRequestClosedStatus(for request: inout LetsGoRowingRequest) {
         // `requestClosed` wird auf `true` gesetzt, wenn keine verfügbaren Sitze mehr vorhanden sind
         requestClosed = availableSeats == 0
         
     }
     
-    func joinOpenRequest(requestId: UUID) {
-        guard let index = listOfRequest.firstIndex(where: { $0.id == requestId }) else { return }
-        var request = listOfRequest[index]
-
-        // Hole die Benutzer-ID des aktuellen Firebase User
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
-            print("Kein Benutzer angemeldet")
-            return
-        }
-
-        // Hole das Rower-Objekt aus der Datenbank
-        FirebaseManager.shared.fireStore.collection("users").document(uid).getDocument { (documentSnapshot, error) in
-            if let error = error {
-                print("Fehler beim Abrufen der Benutzerdaten: \(error)")
-            } else if let documentSnapshot = documentSnapshot, let rower = try? documentSnapshot.data(as: Rower.self) {
-                // Jetzt haben wir das Rower-Objekt und können es der Anfrage hinzufügen
-                DispatchQueue.main.async {
-                   
-                    
-                    request.rowerList.append(rower)
-                    request.availableSeats -= 1
-                    if request.availableSeats <= 0 {
-                        request.requestClosed = true
-                    }
-                    self.saveUpdatedRequest(request, withId: request.id)
-                    self.listOfRequest[index] = request
-                }
-            }
-        }
-    }
-
-
-    func saveUpdatedRequest(_ request: LetsGoRowingRequest, withId id: UUID) {
-        do {
-            try? FirebaseManager.shared.fireStore.collection("rowerRequests").document(id.uuidString).setData(from: request) { [weak self] error in
-                    guard let self = self else { return }
-                    
-                    if let error = error {
-                        // Fehlerbehandlung, z.B. durch Anzeigen einer Fehlermeldung
-                        DispatchQueue.main.async {
-                            print("Fehler beim Aktualisieren der Anfrage: \(error.localizedDescription)")
-                            self.alertMessage = "Fehler beim Aktualisieren der Anfrage: \(error.localizedDescription)"
-                            self.showAlert = true
-                        }
-                    } else {
-                        // Erfolgreiches Update
-                        DispatchQueue.main.async {
-                            print("Anfrage erfolgreich aktualisiert.")
-                            self.alertMessage = "Anfrage erfolgreich aktualisiert."
-                            self.showAlert = true
-                            
-                            // Aktualisiere den lokalen Zustand entsprechend der erfolgreichen Änderung in Firestore
-                            if let index = self.listOfRequest.firstIndex(where: { $0.id == id }) {
-                                self.listOfRequest[index] = request
-                                // Du könntest auch andere Teile der UI aktualisieren, falls nötig
-                            }
-                        }
-                    }
-                }
-            }
-    }
-
-    
-    
-    
+   
     func addPublisherToRowerList() {
         
         if let publisher = publishedBy {
@@ -247,7 +269,7 @@ class LetsGoRowingViewModel: ObservableObject{
     func removePublisherFromRowerList() {
         if let publisherId = publishedBy?.id {
             rowerList.removeAll { $0.id == publisherId }
-            updateAvailableSeats()
+          updateAvailableSeats()
         }
     }
     
@@ -257,7 +279,7 @@ class LetsGoRowingViewModel: ObservableObject{
         } else {
             addPublisherToRowerList()
         }
-        updateAvailableSeats()
+       updateAvailableSeats()
     }
     
 }

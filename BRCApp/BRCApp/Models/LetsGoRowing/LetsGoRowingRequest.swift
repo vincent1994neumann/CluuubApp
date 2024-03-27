@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 struct LetsGoRowingRequest : Codable, Identifiable {
-    let id : UUID
+    @DocumentID var id : String?
     let publishedBy : Rower?
     var boatType : BoatType
     var rowingStyle : RowingStyle

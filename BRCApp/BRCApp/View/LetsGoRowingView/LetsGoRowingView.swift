@@ -38,6 +38,7 @@ struct LetsGoRowingView: View {
     var body: some View {
         NavigationStack{
             VStack{
+               
                 
                 Picker("Hauptfilter", selection: $mainFilterOption){
                     ForEach(MainFilterOptions.allCases, id: \.self) { option in

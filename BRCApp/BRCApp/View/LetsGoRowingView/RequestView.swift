@@ -10,10 +10,13 @@ import SwiftUI
 struct RequestView: View {
     var request: LetsGoRowingRequest
     @ObservedObject var LGRViewModel : LetsGoRowingViewModel
+       
+    
+  
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-           
+            
             HStack{
                 Spacer()
                 Text("\(request.rowingDate, formatter: itemFormatter)")
@@ -68,18 +71,24 @@ struct RequestView: View {
                 Spacer()
                 
                 if !request.requestClosed{
-                    HStack{
-                        Button("Platz einnehmen"){
-                            LGRViewModel.joinOpenRequest(requestId: self.request.id)
-                            LGRViewModel.saveUpdatedRequest(self.request, withId: request.id)
-                            // Logik zum hinzufügen des aktuellen Users im ViewModel schreiben
-                            // Design des Btn anpassen, ggf mit image
-                            // Update der avaialableseats neu kalkulieren
-                            // Togglefunktion zum entfernen auf dem Boot
-                        }.alert(isPresented: $LGRViewModel.showAlert) {
-                            Alert(title: Text("Hinweis"), message: Text(LGRViewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    Button(action: {
+                        LGRViewModel.toggleRowerInRequest(requestId: request.id ?? "Error ID")
+                    }) {
+                        VStack {
+                            if LGRViewModel.isRowerInBoat(for: request.id ?? "Error ID") {
+                                // Icon für "Platz aufgeben"
+                                Image(systemName: "minus.circle.fill")
+                                    .foregroundColor(.red)
+                                Text("Platz aufgeben")
+                            } else {
+                                // Icon für "Platz einnehmen"
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(.green)
+                                Text("Platz nehmen")
+                            }
                         }
                     }
+
                 }else{
                     
                 }
@@ -89,16 +98,16 @@ struct RequestView: View {
         }
         .padding()
         .background(request.skillLevel.skillColor.opacity(0.1))
-               .overlay(
-                   RoundedRectangle(cornerRadius: 10)
-                    .stroke(request.rowingStyle.strokeColor, lineWidth: 4) 
-               )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(request.rowingStyle.strokeColor, lineWidth: 4)
+        )
         .cornerRadius(10)
         .shadow(radius: 5)
         .frame(maxWidth: .infinity)
-        .padding(.all,8)
+        .padding(.all,4)
         
-       
+        
     }
     
     private var itemFormatter: DateFormatter {

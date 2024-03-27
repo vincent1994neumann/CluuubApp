@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct Rower: Codable, Identifiable{
+ struct Rower: Codable, Identifiable, Equatable{
     let id : String
     let name : String
     let lastName : String

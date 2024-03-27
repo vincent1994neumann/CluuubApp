@@ -66,16 +66,16 @@ struct LetsGoRowingRequestView: View {
                     
                     Section(header: Text("Liste von Ruderern")) {
                         HStack{
-                                               Spacer()
-                                               Button(LGRViewModel.isPublisherInBoat ? "Mich aus Boot entfernen" : "Mich zum Boot hinzufügen") {
-                                                   LGRViewModel.togglePublisherInRowerList()
-                                               }
-                                               Spacer()
-                                           }
-                        TextField("Ruderer manuell platzieren", text: $searchText)
-                            .onChange(of: searchText) { newValue in
-                                LGRViewModel.filterUsers(with: newValue)
+                            Spacer()
+                            Button(LGRViewModel.isPublisherInBoat ? "Mich aus Boot entfernen" : "Mich zum Boot hinzufügen") {
+                                LGRViewModel.togglePublisherInRowerList()
                             }
+                            Spacer()
+                        }
+                        TextField("Ruderer manuell platzieren", text: $searchText)
+                            .onChange(of: searchText) {old, new in
+                                LGRViewModel.filterUsers(with: new)}
+                        
                         
                         if !searchText.isEmpty {
                             ForEach(LGRViewModel.filterUsers, id: \.id) { filteredUser in
@@ -133,25 +133,25 @@ struct LetsGoRowingRequestView: View {
                     
                     HStack{
                         Spacer()
-                      
-                        Button("Anfrage veröffentlichen"){
                         
+                        Button("Anfrage veröffentlichen"){
+                            
                             showPublishConfirmationAlert = true
                         }
                         Spacer()
                     } .disabled(LGRViewModel.rowerList.isEmpty)
-                    .alert(isPresented: $showPublishConfirmationAlert) {
-                        Alert(
-                            title: Text("Anfrage veröffentlichen"),
-                            message: Text("Möchten Sie die Anfrage wirklich veröffentlichen?"),
-                            primaryButton: .destructive(Text("Veröffentlichen")) {
-                                publishConfirmed = true
-                                LGRViewModel.saveRowerRequest()
-                                dismiss()
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
+                        .alert(isPresented: $showPublishConfirmationAlert) {
+                            Alert(
+                                title: Text("Anfrage veröffentlichen"),
+                                message: Text("Möchten Sie die Anfrage wirklich veröffentlichen?"),
+                                primaryButton: .destructive(Text("Veröffentlichen")) {
+                                    publishConfirmed = true
+                                    LGRViewModel.saveRowerRequest()
+                                    dismiss()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
                     
                 }.toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
