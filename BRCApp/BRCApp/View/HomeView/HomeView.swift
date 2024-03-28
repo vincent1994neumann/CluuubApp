@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var viewModel = HomeViewModel()
+    @ObservedObject var LGRViewModel : LetsGoRowingViewModel
     @Binding var selectedTab: Tabs
     @State private var isShowingSideMenu = false
     
@@ -42,6 +43,7 @@ struct HomeView: View {
                     }
                     
                     Spacer()
+                    
                 }.toolbar{
                     ToolbarItem(placement: .topBarLeading){
                         Button(action:{
@@ -75,5 +77,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(viewModel: HomeViewModel(), selectedTab: .constant(.homeView))
+    HomeView(viewModel: HomeViewModel(), LGRViewModel: LetsGoRowingViewModel(), selectedTab: .constant(.homeView))
 }

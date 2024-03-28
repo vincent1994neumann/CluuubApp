@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ProfilView: View {
+   // var rower: Rower
     var body: some View {
-        Text("Profil")
+        Text("Profil von ")
         
     }
 }
 
-#Preview {
-    ProfilView()
-}
+

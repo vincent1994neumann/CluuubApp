@@ -97,7 +97,7 @@ class LetsGoRowingViewModel: ObservableObject{
         //Sonst gibt es Probleme mit der Init des Requests - rowerListe !
         rowerListInit()
         //RowerList übergeben
-        let rowerRequest = LetsGoRowingRequest(publishedBy: self.publishedBy, boatType: self.selectedBoatType, rowingStyle: self.selectedRowingStyle, rowingDate: self.rowingDate, availableSeats: self.availableSeats, rowerList: self.rowerList, requestClosed: self.requestClosed, skillLevel: self.skillLevel)
+        let rowerRequest = LetsGoRowingRequest(publishedBy: self.publishedBy, boatType: self.selectedBoatType, rowingStyle: self.selectedRowingStyle, rowingDate: self.rowingDate, availableSeats: self.availableSeats, rowerList: self.rowerList, requestClosed: self.requestClosed, skillLevel: self.skillLevel, distance: self.distance, notes: self.notes)
         
         do {
             let _ = try FirebaseManager.shared.fireStore.collection("rowerRequests").addDocument(from: rowerRequest) { error in
@@ -107,6 +107,7 @@ class LetsGoRowingViewModel: ObservableObject{
                     print("Error saving request: \(error)")
                 } else {
                     print("Request successfully saved")
+                    
                 }
             }
         } catch let error {
@@ -115,13 +116,14 @@ class LetsGoRowingViewModel: ObservableObject{
         print("saveRowerRequest 1")
     }
   
+   
 
     
     func saveUpdatedRequest(_ request: LetsGoRowingRequest, withId id: String) {
         do {
             try FirebaseManager.shared.fireStore.collection("rowerRequests")
                 .document(id)
-                .setData(from: request, merge: true) { error in // Füge `merge: true` hinzu, um vorhandene Daten zu aktualisieren
+                .setData(from: request, merge: true) { error in 
                     if let error = error {
                         print("Fehler beim Aktualisieren der Anfrage: \(error.localizedDescription)")
                     } else {
@@ -175,6 +177,7 @@ class LetsGoRowingViewModel: ObservableObject{
                     // Benutzer ist nicht in der Liste, füge ihn hinzu
                     request.rowerList.append(rower)
                     request.availableSeats -= 1
+                
                 }
                 
                 // Aktualisiere den Status der Anfrage

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
-    
+   
     
     var menuItems = [
         SideMenuItem(sideMenuTabName: "Profil", imageSystemName: "person", destination: AnyView(ProfilView())),

@@ -22,7 +22,7 @@ struct MainTabView: View {
     var body: some View {
         
         TabView(selection: $selectedTab){
-            HomeView(selectedTab: $selectedTab)
+            HomeView(LGRViewModel: LetsGoRowingViewModel.init(), selectedTab: $selectedTab)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

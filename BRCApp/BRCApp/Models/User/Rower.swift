@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct Rower: Codable, Identifiable, Equatable{
+ struct Rower: Codable, Identifiable{
     let id : String
     let name : String
     let lastName : String
@@ -20,7 +20,8 @@ import Foundation
     let sb : Bool
     var trailerDrivingLicence : Bool
     var admin :Bool
-   // var createdRequest: [LetsGoRowingRequest] = []
+//    var createdRequest: [LetsGoRowingRequest] = []
+//    var participatedEvents : [LetsGoRowingRequest] = []
      //var skillLevel : SkillLevel
      
      var fullName: String {

@@ -13,12 +13,12 @@ enum RowingStyle : String, CaseIterable, Codable{
     case skull = "Skull"
     case riemen = "Riemen"
     
-    var strokeColor : Color {
+    var strokeColor : Image {
         switch self{
         case.riemen:
-            return Color.red
+            return Image("LetsGoRowingBTNPic")
         case.skull:
-            return Color.yellow
+            return Image("viererOhne")
             
         }
     }
