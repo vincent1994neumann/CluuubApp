@@ -20,8 +20,11 @@ struct LetsGoRowingView: View {
     
     var filteredRequests: [LetsGoRowingRequest] {
         LGRviewModel.listOfRequest.filter{ request in
-            (mainFilterOption == .open && !request.requestClosed) ||
-            (mainFilterOption == .closed && request.requestClosed)
+            request.rowingDate >= Date() &&
+                   (
+                       (mainFilterOption == .open && !request.requestClosed) ||
+                       (mainFilterOption == .closed && request.requestClosed)
+                   )
         }.filter{ request in
             switch subFilterOption {
             case .all:

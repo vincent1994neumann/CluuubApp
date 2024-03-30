@@ -108,6 +108,8 @@ class LetsGoRowingViewModel: ObservableObject{
                 } else {
                     print("Request successfully saved")
                     
+                    self.resetRequestValuesToDefault()  
+                    
                 }
             }
         } catch let error {
@@ -116,7 +118,18 @@ class LetsGoRowingViewModel: ObservableObject{
         print("saveRowerRequest 1")
     }
   
-   
+    private func resetRequestValuesToDefault() {
+        // Setze alle Werte zurück auf ihre Standardwerte.
+        self.selectedBoatType = .double // Oder dein Standardwert
+        self.selectedRowingStyle = .skull // Oder dein Standardwert
+        self.skillLevel = .beginner // Oder dein Standardwert
+        self.rowingDate = Date() // Setzt das Datum auf heute
+        self.distance = 10.0 // Oder dein Standardwert
+        self.rowerList = [] // Leere Liste
+        self.notes = "" // Leeren String setzen
+        self.availableSeats = 0 // Oder dein Standardwert basierend auf dem Bootstyp
+        self.requestClosed = false // Standardmäßig nicht geschlossen
+    }
 
     
     func saveUpdatedRequest(_ request: LetsGoRowingRequest, withId id: String) {

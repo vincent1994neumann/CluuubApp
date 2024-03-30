@@ -13,7 +13,7 @@ import Foundation
     let lastName : String
     let age : String
     let eMail : String
-    let password : String // sollte hier nicht gespeichert werden
+    //let password : String // sollte hier nicht gespeichert werden
     let skull: Bool
     let riemen : Bool
     let bb : Bool

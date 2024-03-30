@@ -51,7 +51,7 @@ class AuthenticationViewModel : ObservableObject{
         FirebaseManager.shared.auth.createUser(withEmail: self.emailAdress, password: self.password){
             authResult, error in
             if let user = self.handleAuthResult(authResult: authResult, error: error){
-                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, password: self.password, skull: false, riemen: false, bb: false, sb: false, trailerDrivingLicence: false, admin: false)
+                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, skull: false, riemen: false, bb: false, sb: false, trailerDrivingLicence: false, admin: false)
                 do{
                     try FirebaseManager.shared.fireStore.collection("user").document(user.uid).setData(from: fireUser)
                 }catch{

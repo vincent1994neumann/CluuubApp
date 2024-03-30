@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct HomeView: View {
     
@@ -13,7 +14,7 @@ struct HomeView: View {
     @ObservedObject var LGRViewModel : LetsGoRowingViewModel
     @Binding var selectedTab: Tabs
     @State private var isShowingSideMenu = false
-    
+     var weatherAPI = APIWeatherRepo()
     
     
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
@@ -44,6 +45,8 @@ struct HomeView: View {
                     
                     Spacer()
                     
+                 
+                    
                 }.toolbar{
                     ToolbarItem(placement: .topBarLeading){
                         Button(action:{
@@ -61,6 +64,17 @@ struct HomeView: View {
                         isShowingSideMenu = false
                     }
                 }
+                .onAppear{
+                    weatherAPI.fetchWeather{ weatherRespons in
+                        if let weather = weatherRespons {
+                            print("Aktuelles Wetter \(weather.wind.speed)")
+                            print("Aktuelles Wetter \(weather.clouds)")
+                            print("Aktuelles Wetter \(weather.cod)")
+                            print("Aktuelles Wetter \(weather.base)")
+                        }
+                        
+                    }
+                }
                 
                 HStack{
                     if isShowingSideMenu{
@@ -76,6 +90,6 @@ struct HomeView: View {
      
 }
 
-#Preview {
-    HomeView(viewModel: HomeViewModel(), LGRViewModel: LetsGoRowingViewModel(), selectedTab: .constant(.homeView))
-}
+//#Preview {
+//    HomeView(viewModel: HomeViewModel(), LGRViewModel: LetsGoRowingViewModel(), selectedTab: .constant(.homeView))
+//}
