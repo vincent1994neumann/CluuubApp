@@ -9,6 +9,7 @@
 
     struct PinnwandDetailView: View {
         let pinnwandPost: Pinnwand
+        
         @State private var newCommentContent: String = ""
         @ObservedObject var viewModel: PinnwandViewModel
 
@@ -16,22 +17,21 @@
             VStack {
                 ScrollView{
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(viewModel.currentPinnwandPost?.title ?? "Error").font(.title)
-                        Text(pinnwandPost.subTitle).font(.headline)
+                        Text(pinnwandPost.title).font(.title)
+                        Text("\(pinnwandPost.categoryPost)")
                         Text(pinnwandPost.description)
                         Text("Veröffentlicht von: \(pinnwandPost.publishedBy.fullName)")
-                        Text("Am \(pinnwandPost.publishedDate), formatter: itemFormatter)")
+                        Text("Am \(pinnwandPost.publishedDate)")
                         Divider()
                         Text("Kommentare:").font(.headline)
                         
-                        ForEach(viewModel.currentPinnwandPost?.commentSection ?? []) { comment in
-                               CommentView(comment: comment)
-                           }
-
-                        
+                        ForEach(viewModel.comments) { comment in
+                                            CommentView(comment: comment)
+                                        }
                     }
                     .padding()
-                }.onAppear(perform: {
+                }
+                .onAppear(perform: {
                     viewModel.loadComments(forPostWithID: viewModel.currentPinnwandPost?.id ?? "Error")
                 })
 
@@ -41,17 +41,28 @@
                 HStack {
                     TextField("Schreiben Sie einen Kommentar...", text: $newCommentContent)
                     Button("Senden") {
-                        viewModel.addComment(toPostWithID: pinnwandPost.id ?? "Error PostId", content: newCommentContent, author: pinnwandPost.publishedBy)
-    //                    viewModel.addComment(toPostWithID: pinnwandPost.id ?? <#default value#>, content: newCommentContent, author: viewModel.currentUser?.id)
-                        viewModel.loadComments(forPostWithID: viewModel.currentPinnwandPost?.id ?? "Error !!!")
-                        print("\(pinnwandPost.commentSection)")
+                        // Es ist sicher, direkt auf postID und publishedBy zuzugreifen,
+                        // da sie anscheinend keine Optionals sind.
+                        guard let postID = pinnwandPost.id else {
+                            print("Error: Post ID ist nil")
+                            return
+                        }
+                        viewModel.addComment(toPostWithID: postID, content: newCommentContent, author: pinnwandPost.publishedBy)
+                        viewModel.loadComments(forPostWithID: postID)
                         newCommentContent = ""
                     }
                     .disabled(newCommentContent.isEmpty)
+
+
                 }
                 .padding()
             }
             .navigationBarTitle(Text(pinnwandPost.title), displayMode: .inline)
+            .onAppear {
+                       if let postID = viewModel.currentPinnwandPost?.id {
+                           viewModel.loadComments(forPostWithID: postID)
+                       }
+                   }
         }
         
         private var itemFormatter: DateFormatter {

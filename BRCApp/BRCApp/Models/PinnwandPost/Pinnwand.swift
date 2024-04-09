@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 struct Pinnwand : Codable, Identifiable {
     @DocumentID var id: String?
     var title: String
-    var subTitle : String
+    var categoryPost : PinnwandCategory
     var description : String
     var publishedBy : Rower
     var publishedDate : Date = Date()
-    var commentSection : [Comment]
+    //var commentSection : [Comment]
 }

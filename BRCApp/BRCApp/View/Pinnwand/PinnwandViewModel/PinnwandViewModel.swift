@@ -13,11 +13,12 @@ import FirebaseFirestoreSwift
 class PinnwandViewModel : ObservableObject{
     
     @Published var title: String = ""
-    @Published var subTitle : String = ""
+    @Published var categoryPinnwand : PinnwandCategory = .Sonstiges
     @Published var description : String = ""
     @Published var publishedBy : Rower?
     @Published var publishedDate : Date = Date()
-    @Published var commentSection : [Comment] = []
+    
+    @Published var comments : [Comment] = []
     @Published var currentUser : Rower?
     
     @Published var listOfPinnwandPost : [Pinnwand] = []
@@ -60,7 +61,7 @@ class PinnwandViewModel : ObservableObject{
     
     func savePinnwandPost(){
         
-        let pinnwandPost = Pinnwand(title: self.title, subTitle: self.subTitle, description: self.description, publishedBy: self.publishedBy!, publishedDate: self.publishedDate, commentSection: self.commentSection)
+        let pinnwandPost = Pinnwand(title: self.title, categoryPost: self.categoryPinnwand, description: self.description, publishedBy: self.publishedBy!, publishedDate: self.publishedDate)
         
         do {
             let _ = try FirebaseManager.shared.fireStore.collection("pinnwandPost").addDocument(from: pinnwandPost) { error in
@@ -140,7 +141,7 @@ class PinnwandViewModel : ObservableObject{
                     // Erfolg
                     print("Comment successfully added")
                     self.loadComments(forPostWithID: postID)
-                    print("\(self.commentSection)")
+                    print("\(self.comments)")
                 }
             }
         } catch {
@@ -149,24 +150,30 @@ class PinnwandViewModel : ObservableObject{
     }
 
     func loadComments(forPostWithID postID: String) {
-        let postRef = FirebaseManager.shared.fireStore.collection("pinnwandPost").document(postID)
-        let commentsRef = postRef.collection("comments")
+           let commentsRef = FirebaseManager.shared.fireStore.collection("pinnwandPost").document(postID).collection("comments")
 
-        commentsRef.order(by: "timestamp", descending: false).getDocuments { [weak self] (snapshot, error) in
-            if let snapshot = snapshot {
-                let comments = snapshot.documents.compactMap { document in
-                    try? document.data(as: Comment.self)
-                }
-                DispatchQueue.main.async {
-                    self?.currentPinnwandPost?.commentSection = comments
-                    // Nachdem Sie die Kommentarsektion aktualisiert haben, müssen Sie der Ansicht mitteilen, dass sie aktualisiert werden muss.
-                    self?.objectWillChange.send()
-                }
-            } else if let error = error {
-                print("Error loading comments: \(error)")
-            }
-        }
-    }
+           commentsRef.order(by: "timestamp", descending: true).getDocuments { [weak self] (snapshot, error) in
+               if let error = error {
+                   print("Error loading comments: \(error)")
+                   return
+               }
+
+               guard let documents = snapshot?.documents else {
+                   print("No comments found for post ID \(postID)")
+                   return
+               }
+
+               let comments = documents.compactMap { document -> Comment? in
+                   return try? document.data(as: Comment.self)
+               }
+
+               DispatchQueue.main.async {
+                   self?.comments = comments
+                   self?.objectWillChange.send()
+               }
+           }
+       }
+
 
 
 
@@ -200,7 +207,7 @@ class PinnwandViewModel : ObservableObject{
     
     private func resetPostValuesToDefault() {
         self.title = ""
-        self.subTitle  = ""
+        self.categoryPinnwand  = .Sonstiges
         self.description = ""
         self.publishedDate = Date()
     }

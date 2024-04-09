@@ -17,7 +17,11 @@ struct PinnwandAddView: View {
             Form {
                 Section(header: Text("Post Details")) {
                     TextField("Titel", text: $pinnwandViewModel.title)
-                    TextField("Untertitel", text: $pinnwandViewModel.subTitle)
+                    Picker("Kategorie", selection: $pinnwandViewModel.categoryPinnwand){
+                        ForEach(PinnwandCategory.allCases, id: \.self){ style in
+                            Text(style.rawValue)
+                        }
+                    }
                     TextField("Beschreibung", text: $pinnwandViewModel.description)
                     // Falls Sie möchten, dass der Benutzer ein Datum auswählen kann:
                     Text("Veröffentlichungsdatum: \(pinnwandViewModel.publishedDate, formatter: itemFormatter)")

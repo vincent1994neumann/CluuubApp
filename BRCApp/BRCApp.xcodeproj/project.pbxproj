@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */; };
 		BF772EB42BA21221008C901A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB32BA21220008C901A /* HomeView.swift */; };
 		BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB52BA21239008C901A /* LetsGoRowingView.swift */; };
 		BF772EB82BA21257008C901A /* PinnwandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB72BA21257008C901A /* PinnwandView.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandCategory.swift; sourceTree = "<group>"; };
 		BF772EB32BA21220008C901A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF772EB52BA21239008C901A /* LetsGoRowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingView.swift; sourceTree = "<group>"; };
 		BF772EB72BA21257008C901A /* PinnwandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				BF86E5682BBAF4EB00458A72 /* Pinnwand.swift */,
 				BF86E5762BBC3D0C00458A72 /* Comments.swift */,
+				BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */,
 			);
 			path = PinnwandPost;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				BF86E5752BBC3B1200458A72 /* PinnwanndDetailView.swift in Sources */,
 				BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */,
 				BF772ED22BA5BD13008C901A /* LetsGoRowingViewModel.swift in Sources */,
+				BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */,
 				BF86E5572BB56EAC00458A72 /* Coordinates.swift in Sources */,
 				BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */,
 				BF772ED62BA5BD56008C901A /* LetsGoRowingRequestView.swift in Sources */,
