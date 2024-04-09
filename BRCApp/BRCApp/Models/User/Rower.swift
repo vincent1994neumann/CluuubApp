@@ -20,8 +20,9 @@ import Foundation
     let sb : Bool
     var trailerDrivingLicence : Bool
     var admin :Bool
-//    var createdRequest: [LetsGoRowingRequest] = []
-//    var participatedEvents : [LetsGoRowingRequest] = []
+    var createdRequests: [String] = []
+    var participatedEvents : [String] = []
+    var myPosts : [String] = []
      //var skillLevel : SkillLevel
      
      var fullName: String {

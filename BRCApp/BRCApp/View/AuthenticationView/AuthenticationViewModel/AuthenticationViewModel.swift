@@ -26,7 +26,9 @@ class AuthenticationViewModel : ObservableObject{
     @Published var showAlert = false
     @Published var alertMessage = ""
     @Published var registrationSuccessful : Bool = false
-  
+  //  @Published var createdRequests: [String] = []
+  //  @Published var participatedEvents : [String] = []
+  //  @Published var myPosts : [String] = []
     
     var userIsLoggedIn : Bool { // Prüft ob der User eingeloggt ist
         self.user != nil
@@ -51,7 +53,7 @@ class AuthenticationViewModel : ObservableObject{
         FirebaseManager.shared.auth.createUser(withEmail: self.emailAdress, password: self.password){
             authResult, error in
             if let user = self.handleAuthResult(authResult: authResult, error: error){
-                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, skull: false, riemen: false, bb: false, sb: false, trailerDrivingLicence: false, admin: false)
+                let fireUser = Rower(id: user.uid, name: self.name, lastName: self.lastName, age: self.age, eMail: self.emailAdress, skull: false, riemen: false, bb: false, sb: false, trailerDrivingLicence: false, admin: false, createdRequests: [], participatedEvents: [], myPosts: [])
                 do{
                     try FirebaseManager.shared.fireStore.collection("user").document(user.uid).setData(from: fireUser)
                 }catch{

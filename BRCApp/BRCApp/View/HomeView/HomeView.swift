@@ -67,10 +67,10 @@ struct HomeView: View {
                 .onAppear{
                     weatherAPI.fetchWeather{ weatherRespons in
                         if let weather = weatherRespons {
-                            print("Aktuelles Wetter \(weather.wind.speed)")
-                            print("Aktuelles Wetter \(weather.clouds)")
+                            print("Aktueller Windspeed \(weather.wind.speed)")
+                            print("Aktuelle Bewölkung \(weather.clouds)")
                             print("Aktuelles Wetter \(weather.cod)")
-                            print("Aktuelles Wetter \(weather.base)")
+                            print("Aktuelle Wetterstation \(weather.base)")
                         }
                         
                     }

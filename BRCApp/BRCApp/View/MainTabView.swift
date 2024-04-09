@@ -34,9 +34,9 @@ struct MainTabView: View {
                 }
                 .tag(Tabs.letsGoRowingView)
             
-            NewsView(selectedTab: $selectedTab)
+            PinnwandView(selectedTab: $selectedTab)
                 .tabItem {
-                    Label("News", systemImage: "newspaper")
+                    Label("Pinnwand", systemImage: "newspaper")
                 }
                 .tag(Tabs.newsView)
             

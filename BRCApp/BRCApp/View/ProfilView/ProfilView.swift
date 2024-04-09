@@ -3,7 +3,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct ProfilView: View {
-    @ObservedObject var profilViewModel: ProfilViewModel
+    @ObservedObject var profilViewModel = ProfilViewModel()
+    @EnvironmentObject var authViewModel : AuthenticationViewModel
 
     init() {
         self.profilViewModel = ProfilViewModel()
@@ -30,6 +31,10 @@ struct ProfilView: View {
                         ProfileDetail(title: "Admin", value: user.admin ? "Ja" : "Nein")
                     }
               
+                    Button("Sign Out"){
+                        authViewModel.logout()
+                        
+                    }
                 }
             } else {
                 Text("Lade Benutzerdaten...")

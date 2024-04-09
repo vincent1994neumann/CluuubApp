@@ -23,7 +23,7 @@ class LetsGoRowingViewModel: ObservableObject{
     @Published var publishedBy: Rower?
     @Published var availableSeats: Int = 0
     @Published var requestClosed : Bool = false
-    @Published private var currentUser : Rower?
+    @Published var currentUser : Rower?
     
     
     //Search for Rower
@@ -52,7 +52,7 @@ class LetsGoRowingViewModel: ObservableObject{
     init(){
         fetchCurrentUserDetails()
         fetchAllUsers()
-       updateAvailableSeats()
+        updateAvailableSeats()
     }
     
     func isRowerInBoat(for requestId: String) -> Bool {
@@ -67,12 +67,12 @@ class LetsGoRowingViewModel: ObservableObject{
 
     
     func fetchCurrentUserDetails() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
+        guard let currentUser = FirebaseManager.shared.auth.currentUser?.uid else {
             print("User not logged in")
             return
         }
         
-        FirebaseManager.shared.fireStore.collection("user").document(uid).getDocument { [weak self] document, error in
+        FirebaseManager.shared.fireStore.collection("user").document(currentUser).getDocument { [weak self] document, error in
             guard let self = self else { return }
             // ToDo Recap
             if let document = document, document.exists, let user = try? document.data(as: Rower.self) {
@@ -119,16 +119,15 @@ class LetsGoRowingViewModel: ObservableObject{
     }
   
     private func resetRequestValuesToDefault() {
-        // Setze alle Werte zurück auf ihre Standardwerte.
-        self.selectedBoatType = .double // Oder dein Standardwert
-        self.selectedRowingStyle = .skull // Oder dein Standardwert
-        self.skillLevel = .beginner // Oder dein Standardwert
-        self.rowingDate = Date() // Setzt das Datum auf heute
-        self.distance = 10.0 // Oder dein Standardwert
-        self.rowerList = [] // Leere Liste
-        self.notes = "" // Leeren String setzen
-        self.availableSeats = 0 // Oder dein Standardwert basierend auf dem Bootstyp
-        self.requestClosed = false // Standardmäßig nicht geschlossen
+        self.selectedBoatType = .double
+        self.selectedRowingStyle = .skull
+        self.skillLevel = .beginner
+        self.rowingDate = Date()
+        self.distance = 10.0
+        self.rowerList = []
+        self.notes = ""
+        self.availableSeats = 0
+        self.requestClosed = false
     }
 
     
