@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum PinnwandCategory : String, CaseIterable, Codable{
     
@@ -17,4 +18,24 @@ enum PinnwandCategory : String, CaseIterable, Codable{
     case Helfersuche = "Helfersuche"
     case Sportpartner = "Sportpartner"
     case Sonstiges = "Sonstiges"
+    
+//    var pinColor : Image{
+//        switch self{
+//        case.Tauschbörse: return Image(systemName: "pin.fill")
+//        case .Verschenken:
+//            <#code#>
+//        case .Verkaufen:
+//            <#code#>
+//        case .Suchen:
+//            <#code#>
+//        case .Wiederfinden:
+//            <#code#>
+//        case .Helfersuche:
+//            <#code#>
+//        case .Sportpartner:
+//            <#code#>
+//        case .Sonstiges:
+//            <#code#>
+//        }
+//    }
 }

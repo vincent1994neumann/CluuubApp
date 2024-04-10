@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */; };
+		BF46A4152BC67D9900DC8C90 /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */; };
+		BF46A41B2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */; };
 		BF772EB42BA21221008C901A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB32BA21220008C901A /* HomeView.swift */; };
 		BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB52BA21239008C901A /* LetsGoRowingView.swift */; };
 		BF772EB82BA21257008C901A /* PinnwandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB72BA21257008C901A /* PinnwandView.swift */; };
@@ -67,6 +69,8 @@
 
 /* Begin PBXFileReference section */
 		BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandCategory.swift; sourceTree = "<group>"; };
+		BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
+		BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetViewModel.swift; sourceTree = "<group>"; };
 		BF772EB32BA21220008C901A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF772EB52BA21239008C901A /* LetsGoRowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingView.swift; sourceTree = "<group>"; };
 		BF772EB72BA21257008C901A /* PinnwandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandView.swift; sourceTree = "<group>"; };
@@ -136,11 +140,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF46A4162BC67DA300DC8C90 /* HomeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF772EBC2BA30759008C901A /* HomeViewModel.swift */,
+			);
+			path = HomeViewModel;
+			sourceTree = "<group>";
+		};
+		BF46A41C2BC6942400DC8C90 /* WeatherWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */,
+				BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */,
+			);
+			path = WeatherWidget;
+			sourceTree = "<group>";
+		};
 		BF772EBB2BA30741008C901A /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
 				BF772EB32BA21220008C901A /* HomeView.swift */,
-				BF772EBC2BA30759008C901A /* HomeViewModel.swift */,
+				BF46A4162BC67DA300DC8C90 /* HomeViewModel */,
+				BF46A41C2BC6942400DC8C90 /* WeatherWidget */,
 				BF772EDA2BA5E67F008C901A /* SideMenü */,
 			);
 			path = HomeView;
@@ -472,8 +494,10 @@
 				BF772EB42BA21221008C901A /* HomeView.swift in Sources */,
 				BF86E5522BB5675F00458A72 /* APIWeatherRepo.swift in Sources */,
 				BF772EB82BA21257008C901A /* PinnwandView.swift in Sources */,
+				BF46A41B2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift in Sources */,
 				BF86E5642BB5C00000458A72 /* System.swift in Sources */,
 				BF98356B2B9F599B00F84785 /* FirebaseManager.swift in Sources */,
+				BF46A4152BC67D9900DC8C90 /* WeatherWidget.swift in Sources */,
 				BF772EC42BA32FDB008C901A /* LetsGoRowingRequest.swift in Sources */,
 				BF772ED02BA44F63008C901A /* RowingStyle.swift in Sources */,
 				BF86E5752BBC3B1200458A72 /* PinnwanndDetailView.swift in Sources */,

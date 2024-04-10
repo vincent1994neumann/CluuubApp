@@ -15,24 +15,59 @@
 
         var body: some View {
             VStack {
-                ScrollView{
+                ScrollView {
+                    
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(pinnwandPost.title).font(.title)
-                        Text("\(pinnwandPost.categoryPost)")
+//                        Text(pinnwandPost.title)
+//                            .font(.largeTitle)
+//                            .bold()
+//                            .padding(.top)
+
+                        Text(pinnwandPost.categoryPost.rawValue)
+                            .font(.title2)
+                            .foregroundColor(.secondary)
+                            .padding(.vertical, 4)
+
                         Text(pinnwandPost.description)
-                        Text("Veröffentlicht von: \(pinnwandPost.publishedBy.fullName)")
-                        Text("Am \(pinnwandPost.publishedDate)")
+                            .font(.body)
+                            .padding(.bottom)
+
+                        HStack {
+                            Text("Veröffentlicht von:")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+
+                            Text(pinnwandPost.publishedBy.fullName)
+                                .font(.subheadline)
+                                .foregroundColor(.primary) // Primärfarbe für wichtige Informationen
+                        }
+
+                        HStack {
+                            Text("Am:")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+
+                            Text(pinnwandPost.publishedDate, style: .date) // Datum im Standardformat
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                        .padding(.bottom, 5)
+
                         Divider()
-                        Text("Kommentare:").font(.headline)
-                        
+
+                        Text("Kommentare:")
+                            .font(.headline)
+                            .padding(.vertical, 5)
+
                         ForEach(viewModel.comments) { comment in
-                                            CommentView(comment: comment)
-                                        }
+                            CommentView(comment: comment)
+                        }
                     }
-                    .padding()
+                    .padding(.horizontal) // Horizontaler Abstand zu den Seiten
                 }
+
                 .onAppear(perform: {
-                    viewModel.loadComments(forPostWithID: viewModel.currentPinnwandPost?.id ?? "Error")
+                    viewModel.loadComments(forPostWithID: pinnwandPost.id!)
                 })
 
 

@@ -23,18 +23,23 @@ struct PinnwandAddView: View {
                         }
                     }
                     TextField("Beschreibung", text: $pinnwandViewModel.description)
+                        .frame(height: 100)
                     // Falls Sie möchten, dass der Benutzer ein Datum auswählen kann:
                     Text("Veröffentlichungsdatum: \(pinnwandViewModel.publishedDate, formatter: itemFormatter)")
                     Text("Verfasser: \(pinnwandViewModel.publishedBy?.fullName ?? "Default Name")")
                 }
                 
                 Section {
-                    Button(action: {
-                        pinnwandViewModel.savePinnwandPost()
-                    }) {
-                        Text("Post speichern")
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            pinnwandViewModel.savePinnwandPost()
+                        }) {
+                            Text("Post speichern")
+                        }
+                        .disabled(pinnwandViewModel.title.isEmpty || pinnwandViewModel.description.isEmpty)
+                        Spacer()
                     }
-                    .disabled(pinnwandViewModel.title.isEmpty || pinnwandViewModel.description.isEmpty)
                 }
             }.toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){

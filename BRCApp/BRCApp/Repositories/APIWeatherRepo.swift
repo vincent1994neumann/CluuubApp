@@ -15,6 +15,8 @@ class APIWeatherRepo{
     var lon : Double = 13.17
     var lat : Double = 52.41
     var baseURL : String {"https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(APIKey)"}
+    var temperature : Double = 0.0
+    
  
     
     func fetchWeather(completion: @escaping (WeatherResponse?) -> Void) {

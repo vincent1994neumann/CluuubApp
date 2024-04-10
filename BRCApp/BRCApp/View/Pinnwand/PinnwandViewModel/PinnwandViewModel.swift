@@ -172,17 +172,9 @@ class PinnwandViewModel : ObservableObject{
                    self?.objectWillChange.send()
                }
            }
+        
        }
 
-
-
-
-
-    
-   
-
-
-    
     func fetchCurrentUserDetails() {
         guard let currentUser = FirebaseManager.shared.auth.currentUser?.uid else {
             print("User not logged in")

@@ -21,12 +21,22 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack{
+            
             ZStack{
+                Image("4xHawkEye")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .opacity(0.15)
                 VStack{
                     Image("BRC_Logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100)
+                        .opacity(0.9)
+                        .padding(.top,24)
+                        .cornerRadius(8)
+                    WeatherWidget().padding(.all,8)
                     
                     GeometryReader { geometry in
                         TabView(selection: $viewModel.currentIndex) {
@@ -43,9 +53,10 @@ struct HomeView: View {
                         .frame(width: geometry.size.width, height: 180)
                     }
                     
-                    Spacer()
+                   
                     
-                 
+                    
+                   
                     
                 }.toolbar{
                     ToolbarItem(placement: .topBarLeading){
@@ -64,17 +75,7 @@ struct HomeView: View {
                         isShowingSideMenu = false
                     }
                 }
-                .onAppear{
-                    weatherAPI.fetchWeather{ weatherRespons in
-                        if let weather = weatherRespons {
-                            print("Aktueller Windspeed \(weather.wind.speed)")
-                            print("Aktuelle Bewölkung \(weather.clouds)")
-                            print("Aktuelles Wetter \(weather.cod)")
-                            print("Aktuelle Wetterstation \(weather.base)")
-                        }
-                        
-                    }
-                }
+                
                 
                 HStack{
                     if isShowingSideMenu{
