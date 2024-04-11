@@ -74,6 +74,7 @@ struct LetsGoRowingView: View {
                         }.sheet(isPresented: $showingAddRequestSheet){
                             LetsGoRowingRequestView(LGRViewModel: LGRviewModel)
                         }
+                        
                     }
                 }.navigationTitle("Let's Go Rowing")
             } .onAppear {

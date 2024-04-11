@@ -54,6 +54,8 @@
                         .padding(.bottom, 5)
 
                         Divider()
+                            .frame(height: 1)
+                            .background(.blue)
 
                         Text("Kommentare:")
                             .font(.headline)
@@ -76,13 +78,12 @@
                 HStack {
                     TextField("Schreiben Sie einen Kommentar...", text: $newCommentContent)
                     Button("Senden") {
-                        // Es ist sicher, direkt auf postID und publishedBy zuzugreifen,
-                        // da sie anscheinend keine Optionals sind.
+                       
                         guard let postID = pinnwandPost.id else {
                             print("Error: Post ID ist nil")
                             return
                         }
-                        viewModel.addComment(toPostWithID: postID, content: newCommentContent, author: pinnwandPost.publishedBy)
+                        viewModel.addComment(toPostWithID: postID, content: newCommentContent)
                         viewModel.loadComments(forPostWithID: postID)
                         newCommentContent = ""
                     }

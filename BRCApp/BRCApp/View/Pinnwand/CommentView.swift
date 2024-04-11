@@ -26,15 +26,18 @@ struct CommentView: View {
                                   }
                               }
                       } else {
-                          Text(authorName)
+                          Text(authorName).font(.caption).italic()
                       }
             Text(comment.content).font(.headline)
-            Text("\(comment.timestamp, formatter: CommentView.itemFormatter)").font(.footnote).italic()
-                .padding(.top,8)
+            Text("\(comment.timestamp, formatter: CommentView.itemFormatter)").font(.caption).italic()
+                .padding(.top,4)
             Divider()
+                .background(.blue)
                 .padding(4)
+            
         }
     }
+        
     
     static private var itemFormatter: DateFormatter {
         let formatter = DateFormatter()

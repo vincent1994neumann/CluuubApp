@@ -35,7 +35,6 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: 120)
                         .opacity(0.9)
-                       // .padding(.top,24)
                         .cornerRadius(8)
                     WeatherWidget().padding(.all,8)
                     
@@ -45,18 +44,26 @@ struct HomeView: View {
                                 Image(viewModel.images[index].name)
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: geometry.size.width, height: 200)
+                                    .frame(width: geometry.size.width, height: 180)
                                     .clipped()
                                     .tag(index)
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
-                        .frame(height: 200)
+                        .frame(height: 180)
                     }
+                    .frame(height: 180)
                     
-                    Text("Upcoming Events")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading) 
+                    
+                    HStack{
+                        Spacer()
+                        Text("Upcoming Events")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading)
+                            .padding(.top, 8)
+                 
+                    }
+                        
                     VeranstaltungsView()
                       
                     

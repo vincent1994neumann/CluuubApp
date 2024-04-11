@@ -78,7 +78,7 @@ struct RequestView: View {
             .frame(maxWidth: .infinity, minHeight: 100)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(.gray, lineWidth: 2)
+                    .stroke(.blue, lineWidth: 2)
             )
             .cornerRadius(10)
             .shadow(radius: 2)
@@ -88,7 +88,7 @@ struct RequestView: View {
             .background(Image("EinerSkull")
                 .resizable()
                 .scaledToFill()
-                .opacity(0.08))
+                .opacity(0.1))
             
             VStack{
                 NavigationLink(destination: RequestDetailView(request: request)) {

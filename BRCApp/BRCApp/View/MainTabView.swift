@@ -47,6 +47,7 @@ struct MainTabView: View {
                 .tag(Tabs.chatView)
 
         }
+        
     }
 }
 

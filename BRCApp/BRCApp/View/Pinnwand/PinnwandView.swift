@@ -60,7 +60,7 @@ struct PinnwandView: View {
                         .background(Color(UIColor.systemBackground))
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.gray, lineWidth: 2)
+                                .stroke(.blue, lineWidth: 2)
                         )
                         .cornerRadius(10)
                         .shadow(radius: 2)

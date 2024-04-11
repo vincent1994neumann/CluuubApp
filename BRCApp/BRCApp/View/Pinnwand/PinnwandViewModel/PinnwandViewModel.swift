@@ -127,28 +127,36 @@ class PinnwandViewModel : ObservableObject{
     }
 
     
-    func addComment(toPostWithID postID: String, content: String, author: Rower) {
+    func addComment(toPostWithID postID: String, content: String) {
+        // Stelle sicher, dass ein Benutzer angemeldet ist.
+        guard let currentUser = currentUser else {
+            self.alertMessage = "Bitte melden Sie sich an, um einen Kommentar hinzuzufügen."
+            self.showAlert = true
+            return
+        }
+        
+        let newComment = Comment(content: content, author: currentUser.id, timestamp: Date())
+
         let postRef = FirebaseManager.shared.fireStore.collection("pinnwandPost").document(postID)
         let commentsRef = postRef.collection("comments")
-
-        let newComment = Comment(content: content, author: author.id, timestamp: Date())
 
         do {
             try commentsRef.addDocument(from: newComment) { error in
                 if let error = error {
                     // Fehlerbehandlung
-                    print("Error adding comment: \(error)")
+                    self.alertMessage = "Fehler beim Hinzufügen des Kommentars: \(error.localizedDescription)"
+                    self.showAlert = true
                 } else {
                     // Erfolg
-                    print("Comment successfully added")
                     self.loadComments(forPostWithID: postID)
-                    print("\(self.comments)")
                 }
             }
         } catch {
-            print("Error encoding comment: \(error)")
+            self.alertMessage = "Fehler beim Kodieren des Kommentars: \(error.localizedDescription)"
+            self.showAlert = true
         }
     }
+
 
     func loadComments(forPostWithID postID: String) {
            let commentsRef = FirebaseManager.shared.fireStore.collection("pinnwandPost").document(postID).collection("comments")
