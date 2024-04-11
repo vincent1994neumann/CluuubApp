@@ -60,7 +60,7 @@
                             .padding(.vertical, 5)
 
                         ForEach(viewModel.comments) { comment in
-                            CommentView(comment: comment)
+                            CommentView(viewModel: viewModel, comment: comment)
                         }
                     }
                     .padding(.horizontal) // Horizontaler Abstand zu den Seiten

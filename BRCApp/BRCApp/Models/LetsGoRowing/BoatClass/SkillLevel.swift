@@ -18,7 +18,7 @@ enum SkillLevel: String, CaseIterable, Codable{
     var skillColor : Color{
         switch self{
         case.beginner:
-            return Color(.systemYellow)
+            return Color(.systemPink)
             
         case.advanced:
             return Color(.green)

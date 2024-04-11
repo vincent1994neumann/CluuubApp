@@ -10,6 +10,10 @@
 		BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */; };
 		BF46A4152BC67D9900DC8C90 /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */; };
 		BF46A41B2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */; };
+		BF46A4212BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4202BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift */; };
+		BF46A4232BC70ED300DC8C90 /* VeranstaltungsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4222BC70ED300DC8C90 /* VeranstaltungsView.swift */; };
+		BF46A4282BC70FFB00DC8C90 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4272BC70FFB00DC8C90 /* Event.swift */; };
+		BF46A42C2BC75DC700DC8C90 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A42B2BC75DC700DC8C90 /* MapView.swift */; };
 		BF772EB42BA21221008C901A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB32BA21220008C901A /* HomeView.swift */; };
 		BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB52BA21239008C901A /* LetsGoRowingView.swift */; };
 		BF772EB82BA21257008C901A /* PinnwandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF772EB72BA21257008C901A /* PinnwandView.swift */; };
@@ -71,6 +75,10 @@
 		BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandCategory.swift; sourceTree = "<group>"; };
 		BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetViewModel.swift; sourceTree = "<group>"; };
+		BF46A4202BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeranstaltungsViewModel.swift; sourceTree = "<group>"; };
+		BF46A4222BC70ED300DC8C90 /* VeranstaltungsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeranstaltungsView.swift; sourceTree = "<group>"; };
+		BF46A4272BC70FFB00DC8C90 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BF46A42B2BC75DC700DC8C90 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		BF772EB32BA21220008C901A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF772EB52BA21239008C901A /* LetsGoRowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsGoRowingView.swift; sourceTree = "<group>"; };
 		BF772EB72BA21257008C901A /* PinnwandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandView.swift; sourceTree = "<group>"; };
@@ -157,11 +165,38 @@
 			path = WeatherWidget;
 			sourceTree = "<group>";
 		};
+		BF46A41F2BC70EA700DC8C90 /* Veranstaltungen */ = {
+			isa = PBXGroup;
+			children = (
+				BF46A4202BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift */,
+				BF46A4222BC70ED300DC8C90 /* VeranstaltungsView.swift */,
+			);
+			path = Veranstaltungen;
+			sourceTree = "<group>";
+		};
+		BF46A4242BC70FD400DC8C90 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				BF46A4272BC70FFB00DC8C90 /* Event.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		BF46A42D2BC7611A00DC8C90 /* ClubInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */,
+				BF46A42B2BC75DC700DC8C90 /* MapView.swift */,
+			);
+			path = ClubInfoView;
+			sourceTree = "<group>";
+		};
 		BF772EBB2BA30741008C901A /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
 				BF772EB32BA21220008C901A /* HomeView.swift */,
 				BF46A4162BC67DA300DC8C90 /* HomeViewModel */,
+				BF46A41F2BC70EA700DC8C90 /* Veranstaltungen */,
 				BF46A41C2BC6942400DC8C90 /* WeatherWidget */,
 				BF772EDA2BA5E67F008C901A /* SideMenü */,
 			);
@@ -340,10 +375,10 @@
 				BF772EBB2BA30741008C901A /* HomeView */,
 				BF772ED32BA5BD17008C901A /* LetsGoRowingView */,
 				BF86E56A2BBAF77C00458A72 /* Pinnwand */,
+				BF86E55E2BB5A7A000458A72 /* ProfilView */,
+				BF46A42D2BC7611A00DC8C90 /* ClubInfoView */,
 				BF772EB92BA2126E008C901A /* ChatView.swift */,
 				BFCD71E62BA84435001F5D8B /* SettingsView.swift */,
-				BF86E55E2BB5A7A000458A72 /* ProfilView */,
-				BFCD71EA2BA8446D001F5D8B /* ClubInfoView.swift */,
 				BF98356F2B9F5B4C00F84785 /* AuthenticationView */,
 			);
 			path = View;
@@ -352,6 +387,7 @@
 		BF9835662B9F584600F84785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BF46A4242BC70FD400DC8C90 /* Event */,
 				BF98356A2B9F599B00F84785 /* FirebaseManager.swift */,
 				BF86E5532BB56E8200458A72 /* WeatherAPI */,
 				BF86E5672BBAF4D100458A72 /* PinnwandPost */,
@@ -505,6 +541,7 @@
 				BF772ED22BA5BD13008C901A /* LetsGoRowingViewModel.swift in Sources */,
 				BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */,
 				BF86E5572BB56EAC00458A72 /* Coordinates.swift in Sources */,
+				BF46A4212BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift in Sources */,
 				BF772EBA2BA2126E008C901A /* ChatView.swift in Sources */,
 				BF772ED62BA5BD56008C901A /* LetsGoRowingRequestView.swift in Sources */,
 				BF772EDE2BA5E94C008C901A /* SideMenuItem.swift in Sources */,
@@ -521,14 +558,17 @@
 				BF86E55D2BB5996000458A72 /* ProfilViewModel.swift in Sources */,
 				BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */,
 				BF86E56E2BBAF82600458A72 /* PinnwandViewModel.swift in Sources */,
+				BF46A4232BC70ED300DC8C90 /* VeranstaltungsView.swift in Sources */,
 				BF86E55B2BB56F5000458A72 /* MainWeather.swift in Sources */,
 				BF86E54F2BB43D1400458A72 /* RequestDetailView.swift in Sources */,
 				BF772ECB2BA44A46008C901A /* SkillLevel.swift in Sources */,
 				BF9835712B9F5B6300F84785 /* AuthenticationView.swift in Sources */,
 				BFCD71F72BADB3DC001F5D8B /* LGRVFilterEnum.swift in Sources */,
+				BF46A42C2BC75DC700DC8C90 /* MapView.swift in Sources */,
 				BF9835732B9F5B8100F84785 /* RegistrationView.swift in Sources */,
 				BF772EBD2BA30759008C901A /* HomeViewModel.swift in Sources */,
 				BF98355A2B9F572100F84785 /* ContentView.swift in Sources */,
+				BF46A4282BC70FFB00DC8C90 /* Event.swift in Sources */,
 				BF98358B2BA07D5600F84785 /* MainTabView.swift in Sources */,
 				BF9835582B9F572100F84785 /* BRCApp.swift in Sources */,
 				BF86E5722BBBD96C00458A72 /* PinnwandAddView.swift in Sources */,

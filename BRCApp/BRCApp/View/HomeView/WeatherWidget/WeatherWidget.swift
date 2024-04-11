@@ -19,9 +19,8 @@ struct WeatherWidget: View {
             
             Text("\(viewModel.vereinOrt)")
                 .font(.footnote)
-            Text("\(String(format: "%.0f", viewModel.temperature))°")
-            Text("Grad |")
-                .font(.footnote)
+            Text("\(String(format: "%.0f", viewModel.temperature))° |")
+            
             Image(systemName: "wind")
             Text("\(String(format: "%.0f", viewModel.windSpeed))")
             Text("km/h |")

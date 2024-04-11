@@ -10,6 +10,10 @@ import SwiftUI
 struct PinnwandAddView: View {
     @ObservedObject var pinnwandViewModel : PinnwandViewModel
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var showAlertNoAvailableSeats = false
+    @State private var showPublishConfirmationAlert = false
+    @State private var publishConfirmed = false
 
     
     var body: some View {
@@ -22,10 +26,15 @@ struct PinnwandAddView: View {
                             Text(style.rawValue)
                         }
                     }
-                    TextField("Beschreibung", text: $pinnwandViewModel.description)
+                }
+                Section(header: Text("Inhalt")) {
+                    TextEditor(text: $pinnwandViewModel.description)
                         .frame(height: 100)
+                }
+                Section(header: Text("Sontige Informationen")) {
                     // Falls Sie möchten, dass der Benutzer ein Datum auswählen kann:
                     Text("Veröffentlichungsdatum: \(pinnwandViewModel.publishedDate, formatter: itemFormatter)")
+                       
                     Text("Verfasser: \(pinnwandViewModel.publishedBy?.fullName ?? "Default Name")")
                 }
                 
@@ -33,13 +42,22 @@ struct PinnwandAddView: View {
                     HStack{
                         Spacer()
                         Button(action: {
-                            pinnwandViewModel.savePinnwandPost()
+                            showPublishConfirmationAlert = true
                         }) {
                             Text("Post speichern")
                         }
                         .disabled(pinnwandViewModel.title.isEmpty || pinnwandViewModel.description.isEmpty)
+                      
                         Spacer()
-                    }
+                    }  .alert(isPresented: $showPublishConfirmationAlert){
+                        Alert(title: Text("Post veröffentlichen"),
+                        message: Text("Möchten Sie den Post wirklich veröffentlichen?"),
+                              primaryButton: .destructive(Text("Veröffentlichen")) {
+                            publishConfirmed = true
+                            pinnwandViewModel.savePinnwandPost()
+                            dismiss()
+                        }, secondaryButton: .cancel()
+                    )}
                 }
             }.toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){

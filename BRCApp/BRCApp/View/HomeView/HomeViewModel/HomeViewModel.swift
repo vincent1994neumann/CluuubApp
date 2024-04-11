@@ -14,6 +14,7 @@ class HomeViewModel: ObservableObject, Identifiable{
         GalleryImage(name: "Anrudern"),
         GalleryImage(name: "BW2018"),
         GalleryImage(name: "Bootsplatz"),
+//        GalleryImage(name: "ClubHausFlagge"),
         GalleryImage(name: "Olympia"),
         GalleryImage(name: "TrainerBootsTaufe")
     ]

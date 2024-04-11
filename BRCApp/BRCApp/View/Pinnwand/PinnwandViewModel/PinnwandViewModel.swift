@@ -24,6 +24,7 @@ class PinnwandViewModel : ObservableObject{
     @Published var listOfPinnwandPost : [Pinnwand] = []
     @Published var currentPinnwandPost: Pinnwand?
 
+    @Published var commentsCount : Int = 5
 
     
     //Allert
@@ -61,7 +62,7 @@ class PinnwandViewModel : ObservableObject{
     
     func savePinnwandPost(){
         
-        let pinnwandPost = Pinnwand(title: self.title, categoryPost: self.categoryPinnwand, description: self.description, publishedBy: self.publishedBy!, publishedDate: self.publishedDate)
+        let pinnwandPost = Pinnwand(title: self.title, categoryPost: self.categoryPinnwand, description: self.description, publishedBy: self.publishedBy!, publishedDate: self.publishedDate, commentsCount: self.commentsCount)
         
         do {
             let _ = try FirebaseManager.shared.fireStore.collection("pinnwandPost").addDocument(from: pinnwandPost) { error in
@@ -169,9 +170,11 @@ class PinnwandViewModel : ObservableObject{
 
                DispatchQueue.main.async {
                    self?.comments = comments
+                   self?.currentPinnwandPost?.commentsCount = comments.count
                    self?.objectWillChange.send()
                }
            }
+       
         
        }
 
@@ -194,6 +197,22 @@ class PinnwandViewModel : ObservableObject{
             }
         }
     }
+    
+    func fetchUserDetails(byID userID: String, completion: @escaping (Rower?) -> Void) {
+        FirebaseManager.shared.fireStore.collection("user").document(userID).getDocument { document, error in
+            if let document = document, document.exists, let user = try? document.data(as: Rower.self) {
+                DispatchQueue.main.async {
+                    completion(user)
+                }
+            } else {
+                if let error = error {
+                    print("Error fetching user details: \(error.localizedDescription)")
+                }
+                completion(nil)
+            }
+        }
+    }
+
     
   
     

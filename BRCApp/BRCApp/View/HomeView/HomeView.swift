@@ -23,18 +23,19 @@ struct HomeView: View {
         NavigationStack{
             
             ZStack{
-                Image("4xHawkEye")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-                    .opacity(0.15)
+//                Image("4xHawkEye")
+//                    .resizable()
+//                    .scaledToFill()
+//                    .ignoresSafeArea()
+//                    .opacity(0.15)
+   
                 VStack{
                     Image("BRC_Logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100)
+                        .frame(width: 120)
                         .opacity(0.9)
-                        .padding(.top,24)
+                       // .padding(.top,24)
                         .cornerRadius(8)
                     WeatherWidget().padding(.all,8)
                     
@@ -44,14 +45,22 @@ struct HomeView: View {
                                 Image(viewModel.images[index].name)
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: geometry.size.width, height: 180)
+                                    .frame(width: geometry.size.width, height: 200)
                                     .clipped()
                                     .tag(index)
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Versteckt die Page Control Indikatoren
-                        .frame(width: geometry.size.width, height: 180)
+                        .frame(height: 200)
                     }
+                    
+                    Text("Upcoming Events")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading) 
+                    VeranstaltungsView()
+                      
+                    
+                   Spacer()
                     
                    
                     
@@ -86,6 +95,7 @@ struct HomeView: View {
                     }
                 }
             }
+                
         }
     }
      

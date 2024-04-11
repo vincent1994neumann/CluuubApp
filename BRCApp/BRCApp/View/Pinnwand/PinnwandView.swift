@@ -14,6 +14,7 @@ struct PinnwandView: View {
     @State var showingAddSheet = false
     
     
+    
     var body: some View {
         NavigationStack {
             
@@ -38,25 +39,29 @@ struct PinnwandView: View {
                                 .padding(.trailing, 16)
                             
                             Divider()
-                                .frame(height: 2)
+                                .frame(height: 0.5)
                                 .background(.blue)
-                            
-                            
-                           
-                            Text(post.description).lineLimit(3)
-                                .padding(.leading, 16)
-                                .padding(.trailing, 16)
+//                            Text(post.description).lineLimit(3)
+//                                .padding(.leading, 16)
+//                                .padding(.trailing, 16)
                             HStack{
                                 Text("Veröffentlicht von \(post.publishedBy.lastName)").font(.footnote).italic()
                                 Spacer()
                                 NavigationLink(destination: PinnwandDetailView(pinnwandPost: post, viewModel: pinnwandViewModel)) {
-                                    Image(systemName: "bubble")
+                                    Image(systemName: "bubble.left.and.bubble.right.fill")
+                                        .font(.system(size: 18))
+                                        .foregroundStyle(.blue)
+                                        .badge(post.commentsCount)
                                 }
                             }
                         }
                         .padding()
-                        .frame(maxWidth: .infinity, minHeight: 100)
+                        .frame(maxWidth: .infinity, minHeight: 80)
                         .background(Color(UIColor.systemBackground))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 2)
+                        )
                         .cornerRadius(10)
                         .shadow(radius: 2)
                         
@@ -65,8 +70,10 @@ struct PinnwandView: View {
                 }
                 .padding(.leading, 8)
                 .padding(.trailing, 8)
+            
                 
             }
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add Post", systemImage: "plus") {
@@ -81,6 +88,7 @@ struct PinnwandView: View {
             .onAppear {
                 pinnwandViewModel.loadPinnwandPosts()
             }
+            
         }
     }
 }

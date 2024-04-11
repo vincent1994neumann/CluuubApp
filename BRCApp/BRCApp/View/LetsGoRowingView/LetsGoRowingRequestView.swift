@@ -29,9 +29,11 @@ struct LetsGoRowingRequestView: View {
                 Form{
                     Section(header: Text("Captain")){
                         HStack{
+                            Spacer()
                             Text(LGRViewModel.publishedBy?.name ?? "error Username")
                             Text(LGRViewModel.publishedBy?.lastName ?? "error Userlastname")
-                            Text(LGRViewModel.publishedBy?.age ?? "error Userlastage")
+//                            Text(LGRViewModel.publishedBy?.age ?? "error Userlastage")
+                            Spacer()
                         }
                     }
                     

@@ -15,5 +15,6 @@ struct Pinnwand : Codable, Identifiable {
     var description : String
     var publishedBy : Rower
     var publishedDate : Date = Date()
+    var commentsCount : Int 
     //var commentSection : [Comment]
 }

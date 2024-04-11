@@ -29,12 +29,14 @@ struct ProfilView: View {
                         ProfileDetail(title: "Steuerboard", value: user.sb ? "Ja" : "Nein")
                         ProfileDetail(title: "Hängerführerschein", value: user.trailerDrivingLicence ? "Ja" : "Nein")
                         ProfileDetail(title: "Admin", value: user.admin ? "Ja" : "Nein")
+                        Button(action: {
+                            authViewModel.logout()
+                        }) {
+                            Label("Sign Out", systemImage: "door.left.hand.open")
+                        }
                     }
               
-                    Button("Sign Out"){
-                        authViewModel.logout()
-                        
-                    }
+                   
                 }
             } else {
                 Text("Lade Benutzerdaten...")

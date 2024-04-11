@@ -79,6 +79,8 @@ struct LetsGoRowingView: View {
             } .onAppear {
                 LGRviewModel.fetchAllRequests()
             }
+            .padding(.leading, 8)
+            .padding(.trailing, 8)
         }
     }
 }
