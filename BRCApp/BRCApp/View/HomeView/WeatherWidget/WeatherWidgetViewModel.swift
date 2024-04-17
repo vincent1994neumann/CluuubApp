@@ -19,25 +19,43 @@ class WeatherWidgetViewModel : ObservableObject{
     private var weatherAPI = APIWeatherRepo()
     
     init(){
-       fetchWeather()
+       loadWeather()
     }
     
     
-    func fetchWeather() {
-          weatherAPI.fetchWeather { [weak self] response in
-              DispatchQueue.main.async {
-                  if let weatherResponse = response {
-                      // Konvertieren der Temperatur von Kelvin in Celsius
-                      self?.temperature = weatherResponse.main.temp - 273.15
-                      self?.windSpeed = weatherResponse.wind.speed
-                      self?.weatherClouds = weatherResponse.clouds.all
-                  } else {
-                      self?.temperature = 0.0
-                      self?.windSpeed = 0.0
-                      self?.weatherClouds = 0
-                  }
-              }
-          }
-      }
+//    func fetchWeather() {
+//          weatherAPI.fetchWeather { [weak self] response in
+//              DispatchQueue.main.async {
+//                  if let weatherResponse = response {
+//                      // Konvertieren der Temperatur von Kelvin in Celsius
+//                      self?.temperature = weatherResponse.main.temp - 273.15
+//                      self?.windSpeed = weatherResponse.wind.speed
+//                      self?.weatherClouds = weatherResponse.clouds.all
+//                  } else {
+//                      self?.temperature = 0.0
+//                      self?.windSpeed = 0.0
+//                      self?.weatherClouds = 0
+//                  }
+//              }
+//          }
+//      }
+    
+    func loadWeather() {
+        Task{
+            do{
+                let weatherResponse = try await weatherAPI.fetchWeather()
+                DispatchQueue.main.async {
+                    self.temperature = weatherResponse.main.temp - 273.15
+                    self.windSpeed = weatherResponse.wind.speed
+                    self.weatherClouds = weatherResponse.clouds.all
+                }
+            } catch{
+                self.temperature = 0.0
+                self.windSpeed = 0.0
+                self.weatherClouds = 0
+            }
+                
+        }
+    }
     
 }
