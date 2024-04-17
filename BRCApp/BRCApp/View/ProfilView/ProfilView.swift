@@ -11,6 +11,7 @@ struct ProfilView: View {
     }
 
     var body: some View {
+        Text(FirebaseManager.shared.currentUser ?? "Error")
         List {
             if let user = profilViewModel.user {
                 ScrollView {
@@ -19,6 +20,8 @@ struct ProfilView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .padding(.bottom, 20)
+                        
+                        ProfileDetail(title: "ID", value: user.id)
 
                         ProfileDetail(title: "Name", value: "\(user.name) \(user.lastName)")
                         ProfileDetail(title: "E-Mail", value: user.eMail)

@@ -14,7 +14,6 @@ class WeatherWidgetViewModel : ObservableObject{
     @Published var windSpeed : Double = 0.0
     @Published var weatherIcon : String = ""
     @Published var weatherClouds : Int = 0
-    @Published var cityname : String = "999"
     var vereinOrt : String = "Berlin Wannsee"
     
     private var weatherAPI = APIWeatherRepo()
@@ -32,7 +31,6 @@ class WeatherWidgetViewModel : ObservableObject{
                       self?.temperature = weatherResponse.main.temp - 273.15
                       self?.windSpeed = weatherResponse.wind.speed
                       self?.weatherClouds = weatherResponse.clouds.all
-                      self?.cityname = weatherResponse.name
                   } else {
                       self?.temperature = 0.0
                       self?.windSpeed = 0.0

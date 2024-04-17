@@ -23,12 +23,6 @@ struct HomeView: View {
         NavigationStack{
             
             ZStack{
-//                Image("4xHawkEye")
-//                    .resizable()
-//                    .scaledToFill()
-//                    .ignoresSafeArea()
-//                    .opacity(0.15)
-   
                 VStack{
                     Image("BRC_Logo")
                         .resizable()
@@ -108,6 +102,3 @@ struct HomeView: View {
      
 }
 
-//#Preview {
-//    HomeView(viewModel: HomeViewModel(), LGRViewModel: LetsGoRowingViewModel(), selectedTab: .constant(.homeView))
-//}

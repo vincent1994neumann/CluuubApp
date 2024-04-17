@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF099BB02BCFAFEC009A8CC0 /* APIKeyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BAF2BCFAFEC009A8CC0 /* APIKeyEnum.swift */; };
+		BF099BB22BCFBDF7009A8CC0 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BB12BCFBDF7009A8CC0 /* test.swift */; };
 		BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */; };
 		BF46A4152BC67D9900DC8C90 /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */; };
 		BF46A41B2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */; };
@@ -72,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF099BAF2BCFAFEC009A8CC0 /* APIKeyEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyEnum.swift; sourceTree = "<group>"; };
+		BF099BB12BCFBDF7009A8CC0 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandCategory.swift; sourceTree = "<group>"; };
 		BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetViewModel.swift; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				BF86E5512BB5675F00458A72 /* APIWeatherRepo.swift */,
+				BF099BB12BCFBDF7009A8CC0 /* test.swift */,
+				BF099BAF2BCFAFEC009A8CC0 /* APIKeyEnum.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -387,8 +393,8 @@
 		BF9835662B9F584600F84785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF46A4242BC70FD400DC8C90 /* Event */,
 				BF98356A2B9F599B00F84785 /* FirebaseManager.swift */,
+				BF46A4242BC70FD400DC8C90 /* Event */,
 				BF86E5532BB56E8200458A72 /* WeatherAPI */,
 				BF86E5672BBAF4D100458A72 /* PinnwandPost */,
 				BF772EC72BA449E6008C901A /* User */,
@@ -555,6 +561,8 @@
 				BF86E5592BB56EB900458A72 /* Weather.swift in Sources */,
 				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
 				BF86E5552BB56E9F00458A72 /* WeatherApiResponse.swift in Sources */,
+				BF099BB02BCFAFEC009A8CC0 /* APIKeyEnum.swift in Sources */,
+				BF099BB22BCFBDF7009A8CC0 /* test.swift in Sources */,
 				BF86E55D2BB5996000458A72 /* ProfilViewModel.swift in Sources */,
 				BF772ECE2BA44EE9008C901A /* BoatType.swift in Sources */,
 				BF86E56E2BBAF82600458A72 /* PinnwandViewModel.swift in Sources */,

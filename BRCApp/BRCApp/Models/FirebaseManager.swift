@@ -12,7 +12,11 @@ import FirebaseFirestore
 class FirebaseManager{
     static let shared = FirebaseManager()
     
-
-     var auth = Auth.auth()
-     var fireStore = Firestore.firestore()
+    
+    var auth = Auth.auth()
+    var fireStore = Firestore.firestore()
+    var currentUser : String?
+    {
+        auth.currentUser?.uid
+    }
 }

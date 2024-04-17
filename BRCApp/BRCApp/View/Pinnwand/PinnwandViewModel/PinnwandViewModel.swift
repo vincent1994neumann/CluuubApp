@@ -79,11 +79,9 @@ class PinnwandViewModel : ObservableObject{
         } catch let error {
             print("Error encoding request: \(error)")
         }
-        print("saveRowerRequest 1")
     }
     
     func deletePinnwandPost(pinnwandPost: Pinnwand) {
-        // Stelle sicher, dass es einen aktuellen Benutzer gibt und dass der Benutzer entweder der Veröffentlicher oder ein Admin ist.
         guard let currentUserID = FirebaseManager.shared.auth.currentUser?.uid else {
             self.alertMessage = "Nicht angemeldet."
             self.showAlert = true
@@ -94,7 +92,6 @@ class PinnwandViewModel : ObservableObject{
         let isAdmin = currentUserIsAdmin()
         
         if isAuthor || isAdmin {
-            // Wenn der Benutzer der Autor oder Admin ist, führe das Löschen durch.
             if let postID = pinnwandPost.id {
                 FirebaseManager.shared.fireStore.collection("pinnwandPost").document(postID).delete() { error in
                     if let error = error {
@@ -128,7 +125,6 @@ class PinnwandViewModel : ObservableObject{
 
     
     func addComment(toPostWithID postID: String, content: String) {
-        // Stelle sicher, dass ein Benutzer angemeldet ist.
         guard let currentUser = currentUser else {
             self.alertMessage = "Bitte melden Sie sich an, um einen Kommentar hinzuzufügen."
             self.showAlert = true
@@ -143,11 +139,9 @@ class PinnwandViewModel : ObservableObject{
         do {
             try commentsRef.addDocument(from: newComment) { error in
                 if let error = error {
-                    // Fehlerbehandlung
                     self.alertMessage = "Fehler beim Hinzufügen des Kommentars: \(error.localizedDescription)"
                     self.showAlert = true
                 } else {
-                    // Erfolg
                     self.loadComments(forPostWithID: postID)
                 }
             }

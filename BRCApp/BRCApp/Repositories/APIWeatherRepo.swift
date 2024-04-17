@@ -11,10 +11,9 @@ class APIWeatherRepo{
     
     //52.418138, 13.171081)
     //https://api.openweathermap.org/data/2.5/weather?lat=52.41&lon=13.17&appid=d04b3899d712aa8320cc9c056018bd57
-    private let APIKey : String = "d04b3899d712aa8320cc9c056018bd57"
     var lon : Double = 13.17
     var lat : Double = 52.41
-    var baseURL : String {"https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(APIKey)"}
+    var baseURL : String {"https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(APIKeyEnum.myApi.rawValue)"}
     var temperature : Double = 0.0
     
  
