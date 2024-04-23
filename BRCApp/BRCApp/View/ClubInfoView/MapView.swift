@@ -7,9 +7,8 @@
 import SwiftUI
 import MapKit
 
-// Definiere eine Struktur, die Identifiable ist, um Annotationen zu repräsentieren.
 struct Location: Identifiable {
-    let id = UUID() // Automatische eindeutige ID für jede Instanz.
+    let id = UUID()
     let coordinate: CLLocationCoordinate2D
 }
 
@@ -26,11 +25,11 @@ struct MapView: View {
         Map(coordinateRegion: $region, annotationItems: locations) { location in
             MapAnnotation(coordinate: location.coordinate) {
                 VStack {
+                    Text("BRC")
+                        .font(.caption)
                     Image(systemName: "pin.fill")
                         .foregroundColor(.red)
                         .font(.title)
-                    Text("BRC")
-                        .font(.caption)
                 }
             }
         }

@@ -16,7 +16,7 @@ struct Event: Identifiable {
 
         if currentDate < eventDate {
             let components = calendar.dateComponents([.day, .hour, .minute], from: currentDate, to: eventDate)
-            if let day = components.day, let hour = components.hour, let minute = components.minute {
+            if let day = components.day, let hour = components.hour {
                 return "Countdown: \(day) Tagen & \(hour) Stunden"
             } else {
                 return "Zeitberechnung nicht verfügbar"

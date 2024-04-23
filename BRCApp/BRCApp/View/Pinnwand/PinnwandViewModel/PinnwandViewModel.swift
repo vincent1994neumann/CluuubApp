@@ -100,7 +100,6 @@ class PinnwandViewModel : ObservableObject{
                     } else {
                         self.alertMessage = "Post erfolgreich gelöscht."
                         self.showAlert = true
-                        // Aktualisiere die UI oder führe weitere Schritte aus, nachdem der Post gelöscht wurde.
                     }
                 }
             } else {

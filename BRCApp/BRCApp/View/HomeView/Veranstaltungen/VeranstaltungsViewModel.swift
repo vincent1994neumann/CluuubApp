@@ -19,7 +19,7 @@ class VeranstaltungsViewModel: ObservableObject {
             Event(
                 name: "Beachparty am Wannsee",
                 description: "Feiern Sie den Sommer mit uns am Strand mit Musik, Tanz und Grill!",
-                startDate: Calendar.current.date(byAdding: .day, value: 6, to: Date())!,
+                startDate: Date(timeIntervalSince1970: 1714121484), //26.04.2024
                 location: "Berliner Ruder-Club, Bootsplatz",
                 imageUrl: "ClubHausBeachParty"
             ),
