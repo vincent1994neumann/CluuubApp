@@ -21,6 +21,8 @@ struct RequestView: View {
                     Text("\(request.rowingDate, formatter: itemFormatter)")
                         .font(.subheadline)
                         .bold()
+                        .foregroundStyle(.brown)
+
                     Spacer()
                 }
                 
@@ -77,18 +79,24 @@ struct RequestView: View {
             .padding()
             .frame(maxWidth: .infinity, minHeight: 100)
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.blue, lineWidth: 2)
-            )
-            .cornerRadius(10)
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(LGRViewModel.isRowerInBoat(for: request.id ?? "Error ID") ? Color.red : Color.blue, lineWidth: 2)
+                        )            .cornerRadius(10)
             .shadow(radius: 2)
             
             
             
-            .background(Image("EinerSkull")
-                .resizable()
-                .scaledToFill()
-                .opacity(0.1))
+            .background(
+                LGRViewModel.isRowerInBoat(for: request.id ?? "Error ID") ?
+                    Image("EinerSkull")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.1)
+                    : nil
+            )
+
+        
+            
             
             VStack{
                 NavigationLink(destination: RequestDetailView(request: request)) {

@@ -21,7 +21,7 @@ struct ChatView: View {
                         DetailContact(name: user.name, lastName: user.lastName)
                     }
                 }
-                .navigationTitle("Chats")
+                .navigationTitle("Chat's")
                 .navigationBarTitleDisplayMode(.inline)
             }
         }

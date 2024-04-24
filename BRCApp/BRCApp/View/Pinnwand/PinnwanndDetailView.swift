@@ -58,7 +58,7 @@
                             .background(.blue)
 
                         Text("Kommentare:")
-                            .font(.headline)
+                            .font(.callout)
                             .padding(.vertical, 5)
 
                         ForEach(viewModel.comments) { comment in
@@ -92,6 +92,7 @@
 
                 }
                 .padding()
+                Divider()
             }
             .navigationBarTitle(Text(pinnwandPost.title), displayMode: .inline)
             .onAppear {

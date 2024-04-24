@@ -11,7 +11,6 @@ struct ProfilView: View {
     }
 
     var body: some View {
-        Text(FirebaseManager.shared.currentUser ?? "Error")
         List {
             if let user = profilViewModel.user {
                 ScrollView {

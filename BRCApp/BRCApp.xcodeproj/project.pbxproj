@@ -164,9 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				BF772EB92BA2126E008C901A /* ChatView.swift */,
-				BF099BBC2BD8EAD6009A8CC0 /* ChatViewModel */,
 				BF099BBA2BD73CB9009A8CC0 /* ChatDetailView.swift */,
 				BF099BB62BCFEB65009A8CC0 /* ChatSenderView.swift */,
+				BF099BBC2BD8EAD6009A8CC0 /* ChatViewModel */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -416,9 +416,9 @@
 				BF772EBB2BA30741008C901A /* HomeView */,
 				BF772ED32BA5BD17008C901A /* LetsGoRowingView */,
 				BF86E56A2BBAF77C00458A72 /* Pinnwand */,
+				BF099BB32BCFEB38009A8CC0 /* ChatView */,
 				BF86E55E2BB5A7A000458A72 /* ProfilView */,
 				BF46A42D2BC7611A00DC8C90 /* ClubInfoView */,
-				BF099BB32BCFEB38009A8CC0 /* ChatView */,
 				BFCD71E62BA84435001F5D8B /* SettingsView.swift */,
 				BF98356F2B9F5B4C00F84785 /* AuthenticationView */,
 			);

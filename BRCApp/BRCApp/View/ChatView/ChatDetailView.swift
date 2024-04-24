@@ -56,6 +56,8 @@ struct ChatDetailView: View {
                     }
                 .disabled(newText.isEmpty)
             } .padding()
+            Divider()
+
         }
         .navigationBarTitle("\(recipient.fullName)")
         .navigationBarTitleDisplayMode(.inline) // Zeigt den Titel in der Navigation Bar an

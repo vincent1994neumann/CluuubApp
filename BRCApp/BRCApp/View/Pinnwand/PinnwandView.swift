@@ -28,33 +28,39 @@ struct PinnwandView: View {
                             
                             
                             HStack{
-                                Text(post.publishedDate, style: .date).font(.footnote).italic()
-                                Text(post.publishedDate, style: .time).font(.footnote).italic()
+                                Text(post.publishedDate, style: .date).font(.footnote)
+                                Text(post.publishedDate, style: .time).font(.footnote)
                                 Spacer()
-                                Text(post.categoryPost.rawValue).font(.footnote).italic()
+                                Text(post.categoryPost.rawValue).font(.footnote)
                             }
+                            .foregroundStyle(.black)
                             
                             Text(post.title).font(.headline)
                                 .padding(.leading, 16)
                                 .padding(.trailing, 16)
+                                .foregroundStyle(.brown)
                             
                             Divider()
                                 .frame(height: 0.5)
                                 .background(.blue)
-//                            Text(post.description).lineLimit(3)
-//                                .padding(.leading, 16)
-//                                .padding(.trailing, 16)
+                            Text(post.description).lineLimit(1)
+                                .font(.caption)
+                                .padding(.leading, 16)
+                                .padding(.trailing, 16)
+                                .foregroundStyle(.gray)
                             HStack{
-                                Text("Veröffentlicht von \(post.publishedBy.lastName)").font(.footnote).italic()
+                                Text("Veröffentlicht von \(post.publishedBy.lastName)").font(.footnote).foregroundStyle(.black)
+                                
                                 Spacer()
                                 NavigationLink(destination: PinnwandDetailView(pinnwandPost: post, viewModel: pinnwandViewModel)) {
                                     Text("Kommentare")
-                                        .font(.system(size: 18))
+                                        .font(.callout)
                                         .foregroundStyle(.blue)
-//                                    Image(systemName: "bubble.left.and.bubble.right.fill")
-//                                        .font(.system(size: 18))
-//                                        .foregroundStyle(.blue)
-//                                        .badge(post.commentsCount)
+                                        .italic()
+                                    Image(systemName: "bubble.left.and.bubble.right")
+                                        .font(.callout)
+                                        .foregroundStyle(.blue)
+                                        .badge(post.commentsCount)
                                 }
                             }
                         }
@@ -87,6 +93,7 @@ struct PinnwandView: View {
             .sheet(isPresented: $showingAddSheet) {
                 PinnwandAddView(pinnwandViewModel: pinnwandViewModel)
             }
+    
             .navigationTitle("Pinnwand")
             .navigationBarTitleDisplayMode(.inline) // Zeigt den Titel in der Navigation Bar an
 
@@ -96,6 +103,7 @@ struct PinnwandView: View {
             
         }
     }
+        
 }
 
 
