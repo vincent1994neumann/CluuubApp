@@ -13,14 +13,16 @@ struct ChatSenderView: View {
     var currentUserName : String
     var messageType: SwitchBlueGreen
     
+    
     var body: some View {
         HStack{
             if messageType == .sender {
                             Spacer()
             }
-            VStack(alignment: messageType == .receiver ? .trailing : .leading, spacing: 4) {
+            VStack {
                 Text(text)
-                
+                    .frame(maxWidth: .infinity, alignment: .leading)  // Stellen Sie sicher, dass der Text linksbündig ist
+      
                 HStack {
                     Text(currentUserName)
                         .font(.footnote)
@@ -36,12 +38,16 @@ struct ChatSenderView: View {
                 .padding(.top,6)
                 
             } .padding(10)
-                .frame(width: 310, alignment: .leading)
+                .frame(width: 310)
                 .foregroundColor(.white)
-                .background(Color.blue)
+                .background(messageType.bubbleColor)
                 .cornerRadius(15)
-                .padding(.trailing, 20)
-                .padding(.leading, 20)
+                .padding(messageType == .receiver ? .leading : .trailing, 20)  // Stellen Sie sicher, dass die Polsterung auf der korrekten Seite ist
+
+            
+            if messageType == .receiver {
+                Spacer()
+            }
         }
     }
     
@@ -53,6 +59,3 @@ struct ChatSenderView: View {
     
 }
 
-#Preview {
-    ChatSenderView(text: "Test 123 \nHallo, das ist eine Testnachricht!\nHallo, das ist eine Testnachricht!\nHallo, das ist eine Testnachricht!", timeStamp: "XX.XX.XXXX", currentUserName: "Eddie", messageType: .sender)
-}

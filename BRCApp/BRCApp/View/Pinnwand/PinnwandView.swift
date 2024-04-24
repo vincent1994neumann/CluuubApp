@@ -48,10 +48,13 @@ struct PinnwandView: View {
                                 Text("Veröffentlicht von \(post.publishedBy.lastName)").font(.footnote).italic()
                                 Spacer()
                                 NavigationLink(destination: PinnwandDetailView(pinnwandPost: post, viewModel: pinnwandViewModel)) {
-                                    Image(systemName: "bubble.left.and.bubble.right.fill")
+                                    Text("Kommentare")
                                         .font(.system(size: 18))
                                         .foregroundStyle(.blue)
-                                        .badge(post.commentsCount)
+//                                    Image(systemName: "bubble.left.and.bubble.right.fill")
+//                                        .font(.system(size: 18))
+//                                        .foregroundStyle(.blue)
+//                                        .badge(post.commentsCount)
                                 }
                             }
                         }
@@ -85,6 +88,8 @@ struct PinnwandView: View {
                 PinnwandAddView(pinnwandViewModel: pinnwandViewModel)
             }
             .navigationTitle("Pinnwand")
+            .navigationBarTitleDisplayMode(.inline) // Zeigt den Titel in der Navigation Bar an
+
             .onAppear {
                 pinnwandViewModel.loadPinnwandPosts()
             }

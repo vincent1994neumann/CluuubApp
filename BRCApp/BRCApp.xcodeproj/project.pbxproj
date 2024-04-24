@@ -11,6 +11,8 @@
 		BF099BB52BCFEB56009A8CC0 /* ChatSenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BB42BCFEB56009A8CC0 /* ChatSenderViewModel.swift */; };
 		BF099BB72BCFEB65009A8CC0 /* ChatSenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BB62BCFEB65009A8CC0 /* ChatSenderView.swift */; };
 		BF099BB92BD73300009A8CC0 /* SwitchBlueGreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BB82BD73300009A8CC0 /* SwitchBlueGreen.swift */; };
+		BF099BBB2BD73CB9009A8CC0 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BBA2BD73CB9009A8CC0 /* ChatDetailView.swift */; };
+		BF099BBF2BD8F029009A8CC0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF099BBE2BD8F029009A8CC0 /* Message.swift */; };
 		BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */; };
 		BF46A4152BC67D9900DC8C90 /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */; };
 		BF46A41B2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */; };
@@ -80,6 +82,8 @@
 		BF099BB42BCFEB56009A8CC0 /* ChatSenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderViewModel.swift; sourceTree = "<group>"; };
 		BF099BB62BCFEB65009A8CC0 /* ChatSenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderView.swift; sourceTree = "<group>"; };
 		BF099BB82BD73300009A8CC0 /* SwitchBlueGreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBlueGreen.swift; sourceTree = "<group>"; };
+		BF099BBA2BD73CB9009A8CC0 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
+		BF099BBE2BD8F029009A8CC0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BF46A4122BC5672400DC8C90 /* PinnwandCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnwandCategory.swift; sourceTree = "<group>"; };
 		BF46A4142BC67D9900DC8C90 /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		BF46A41A2BC6941B00DC8C90 /* WeatherWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetViewModel.swift; sourceTree = "<group>"; };
@@ -160,11 +164,28 @@
 			isa = PBXGroup;
 			children = (
 				BF772EB92BA2126E008C901A /* ChatView.swift */,
-				BF099BB42BCFEB56009A8CC0 /* ChatSenderViewModel.swift */,
+				BF099BBC2BD8EAD6009A8CC0 /* ChatViewModel */,
+				BF099BBA2BD73CB9009A8CC0 /* ChatDetailView.swift */,
 				BF099BB62BCFEB65009A8CC0 /* ChatSenderView.swift */,
-				BF099BB82BD73300009A8CC0 /* SwitchBlueGreen.swift */,
 			);
 			path = ChatView;
+			sourceTree = "<group>";
+		};
+		BF099BBC2BD8EAD6009A8CC0 /* ChatViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF099BB42BCFEB56009A8CC0 /* ChatSenderViewModel.swift */,
+			);
+			path = ChatViewModel;
+			sourceTree = "<group>";
+		};
+		BF099BBD2BD8F013009A8CC0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BF099BBE2BD8F029009A8CC0 /* Message.swift */,
+				BF099BB82BD73300009A8CC0 /* SwitchBlueGreen.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		BF46A4162BC67DA300DC8C90 /* HomeViewModel */ = {
@@ -410,6 +431,7 @@
 				BF98356A2B9F599B00F84785 /* FirebaseManager.swift */,
 				BF772EC72BA449E6008C901A /* User */,
 				BF86E5532BB56E8200458A72 /* WeatherAPI */,
+				BF099BBD2BD8F013009A8CC0 /* Chat */,
 				BF46A4242BC70FD400DC8C90 /* Event */,
 				BF86E5672BBAF4D100458A72 /* PinnwandPost */,
 				BF772EC82BA449F6008C901A /* LetsGoRowing */,
@@ -560,6 +582,7 @@
 				BF099BB72BCFEB65009A8CC0 /* ChatSenderView.swift in Sources */,
 				BF772EB62BA21239008C901A /* LetsGoRowingView.swift in Sources */,
 				BF772ED22BA5BD13008C901A /* LetsGoRowingViewModel.swift in Sources */,
+				BF099BBF2BD8F029009A8CC0 /* Message.swift in Sources */,
 				BF46A4132BC5672400DC8C90 /* PinnwandCategory.swift in Sources */,
 				BF86E5572BB56EAC00458A72 /* Coordinates.swift in Sources */,
 				BF46A4212BC70ECA00DC8C90 /* VeranstaltungsViewModel.swift in Sources */,
@@ -576,6 +599,7 @@
 				BFCD71ED2BA846DC001F5D8B /* SideMenuView.swift in Sources */,
 				BF86E5592BB56EB900458A72 /* Weather.swift in Sources */,
 				BF772EC22BA31B65008C901A /* GalleryImage.swift in Sources */,
+				BF099BBB2BD73CB9009A8CC0 /* ChatDetailView.swift in Sources */,
 				BF86E5552BB56E9F00458A72 /* WeatherApiResponse.swift in Sources */,
 				BF099BB02BCFAFEC009A8CC0 /* APIKeyEnum.swift in Sources */,
 				BF86E55D2BB5996000458A72 /* ProfilViewModel.swift in Sources */,

@@ -41,8 +41,6 @@ struct LetsGoRowingView: View {
     var body: some View {
         NavigationStack{
             VStack{
-               
-                
                 Picker("Hauptfilter", selection: $mainFilterOption){
                     ForEach(MainFilterOptions.allCases, id: \.self) { option in
                         Text(option.rawValue).tag(option)
@@ -77,6 +75,8 @@ struct LetsGoRowingView: View {
                         
                     }
                 }.navigationTitle("Let's Go Rowing")
+                    .navigationBarTitleDisplayMode(.inline) // Zeigt den Titel in der Navigation Bar an
+
             } .onAppear {
                 LGRviewModel.fetchAllRequests()
             }
@@ -87,6 +87,3 @@ struct LetsGoRowingView: View {
 }
 
 
-//#Preview {
-//    LetsGoRowingView(selectedTab: .constant(.letsGoRowingView))
-//}

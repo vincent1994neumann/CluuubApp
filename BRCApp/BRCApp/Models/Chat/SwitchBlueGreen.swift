@@ -15,11 +15,11 @@ enum SwitchBlueGreen : String, Codable, CaseIterable {
     
     var bubbleColor: Color {
         switch self {
+        case .receiver:
+            return .gray
+        
         case .sender:
             return .blue
-        
-        case .receiver:
-            return .green
         }
     }
 }
